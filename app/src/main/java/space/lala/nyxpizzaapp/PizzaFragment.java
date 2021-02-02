@@ -2,42 +2,76 @@ package space.lala.nyxpizzaapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class PizzaFragment extends Fragment {
+
+    List<String> pizzaNames = new ArrayList<>();
+    List<Integer> pizzaPrices = new ArrayList<>();
+    List<String> pizzaImages = new ArrayList<>();
+    CaptionedImagesAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         RecyclerView pizzaRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_pizza, container, false);
 
-        List <String> pizzaNames = new ArrayList(Pizza.pizzas.size());
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://yarobest.ru/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        for (int i = 0; i < Pizza.pizzas.size(); i++) {
-            pizzaNames.add(Pizza.pizzas.get(i).getName());
-        }
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<List<Pizza>> call = jsonPlaceHolderApi.getPizzas();
 
-        List <Integer> pizzaPrice = new ArrayList(Pizza.pizzas.size());
+        call.enqueue(new Callback<List<Pizza>>() {
+            @Override
+            public void onResponse(Call<List<Pizza>> call, Response<List<Pizza>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getContext(), "ERROR: " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                List<Pizza> pizzas = response.body();
 
-        for (int i = 0; i < Pizza.pizzas.size(); i++) {
-            pizzaPrice.add(Pizza.pizzas.get(i).getPrice());
-        }
+                for (int i = 0; i < pizzas.size(); i++) {
+                    pizzaNames.add(pizzas.get(i).getName());
+                }
+                for (int i = 0; i < pizzas.size(); i++) {
+                    pizzaPrices.add(pizzas.get(i).getPrice());
+                }
+                for (int i = 0; i < pizzas.size(); i++) {
+                    pizzaImages.add(pizzas.get(i).getImageURL());
+                    System.out.println("debugg: URL: " + pizzas.get(i).getImageURL());
+                }
 
-        List <Integer> pizzaImages = new ArrayList(Pizza.pizzas.size());
+                pizzaRecycler.setAdapter(adapter);
+            }
 
-        for (int i = 0; i < Pizza.pizzas.size(); i++) {
-            pizzaImages.add(Pizza.pizzas.get(i).getImageResourceId());
-        }
 
-        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(pizzaNames, pizzaPrice, pizzaImages);
-        pizzaRecycler.setAdapter(adapter);
+            @Override
+            public void onFailure(Call<List<Pizza>> call, Throwable t) {
+
+            }
+        });
+
+        adapter = new CaptionedImagesAdapter(pizzaNames, pizzaPrices, pizzaImages);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         pizzaRecycler.setLayoutManager(layoutManager);
 

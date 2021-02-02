@@ -32,10 +32,10 @@ public class PastaFragment extends Fragment {
             pastaPrice.add(Pasta.pastas.get(i).getPrice());
         }
 
-        List<Integer> pastaImages = new ArrayList<>(Pasta.pastas.size());
+        List<String> pastaImages = new ArrayList<>(Pasta.pastas.size());
 
         for (int i = 0; i < Pasta.pastas.size(); i++) {
-            pastaImages.add(Pasta.pastas.get(i).getImageResourceId());
+            pastaImages.add(Pasta.pastas.get(i).getImageURL());
         }
 
         CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(pastaNames, pastaPrice, pastaImages);

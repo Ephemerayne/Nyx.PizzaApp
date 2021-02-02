@@ -1,8 +1,6 @@
 package space.lala.nyxpizzaapp;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
@@ -32,9 +30,9 @@ public class PastaDetailActivity extends AppCompatActivity {
         TextView price = findViewById(R.id.pasta_price);
         price.setText(getString(R.string.prices, pastaPrice));
 
-        int pastaImage = Pasta.pastas.get(pastaId).getImageResourceId();
+       String pastaImage = Pasta.pastas.get(pastaId).getImageURL();
         ImageView imageView = findViewById(R.id.pasta_image);
-        imageView.setImageDrawable(ContextCompat.getDrawable(this, pastaImage));
+//        imageView.setImageDrawable(ContextCompat.getDrawable(this, pastaImage));
         imageView.setContentDescription(pastaName);
     }
 }

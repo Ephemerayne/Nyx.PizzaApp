@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Маргарита",
+    "price": 250,
+    "image": "http://yarobest.ru/nyx-pizza-app/pizza_pic/pizza_margarita.png"
+  },
+  {
+    "name": "Гавайская",
+    "price": 320,
+    "image": ""
+  },
+  {
+    "name": "Четыре сыра",
+    "price": 300,
+    "image": ""
+  }
+]

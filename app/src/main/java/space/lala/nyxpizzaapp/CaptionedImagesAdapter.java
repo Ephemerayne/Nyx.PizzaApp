@@ -13,14 +13,15 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
 
     private List<String> names;
     private List<Integer> prices;
-    private List<Integer> imagesIds;
+    private List<String> imagesURLs;
 
     private Listener listener;
 
@@ -40,11 +41,11 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
     public CaptionedImagesAdapter(
             List<String> names,
             List<Integer> prices,
-            List<Integer> imagesIds
+            List<String> imagesURLs
     ) {
         this.names = names;
         this.prices = prices;
-        this.imagesIds = imagesIds;
+        this.imagesURLs = imagesURLs;
     }
 
     public void setListener(Listener listener) {
@@ -75,8 +76,15 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
     private void setViewsForProducts(CardView cardView, int position) {
         final Resources resources = cardView.getResources();
         ImageView imageView = cardView.findViewById(R.id.image);
-        Drawable drawable = ContextCompat.getDrawable(cardView.getContext(), (Integer) imagesIds.get(position));
-        imageView.setImageDrawable(drawable);
+
+        if (imagesURLs.get(position) != null && !imagesURLs.get(position).isEmpty()) {
+            Picasso.with(cardView.getContext())
+                    .load(imagesURLs.get(position))
+                    .into(imageView);
+        }
+//        Drawable drawable = ContextCompat.getDrawable(cardView.getContext(), (String) imagesURLs.get(position));
+//        imageView.setImageDrawable(drawable);
+        // TODO: set image with picasso
         imageView.setContentDescription((CharSequence) names.get(position));
         TextView title = cardView.findViewById(R.id.title);
         TextView price = cardView.findViewById(R.id.price);
