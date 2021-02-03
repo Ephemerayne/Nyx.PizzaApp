@@ -10,35 +10,67 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class PastaFragment extends Fragment {
+
+    List<String> pastaNames = new ArrayList<>();
+    List<Integer> pastaPrices = new ArrayList<>();
+    List<String> pastaImages = new ArrayList<>();
+    CaptionedImagesAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         RecyclerView pastaRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_pasta, container, false);
 
-        List<String> pastaNames = new ArrayList<>(Pasta.pastas.size());
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://yarobest.ru/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        for (int i = 0; i < Pasta.pastas.size(); i++) {
-            pastaNames.add(Pasta.pastas.get(i).getName());
-        }
-        List<Integer> pastaPrice = new ArrayList<>(Pasta.pastas.size());
+        JsonPastasApi jsonPastasApi = retrofit.create(JsonPastasApi.class);
+        Call<List<Pasta>> call = jsonPastasApi.getPastas();
 
-        for (int i = 0; i < Pasta.pastas.size(); i++) {
-            pastaPrice.add(Pasta.pastas.get(i).getPrice());
-        }
+        call.enqueue(new Callback<List<Pasta>>() {
+            @Override
+            public void onResponse(Call<List<Pasta>> call, Response<List<Pasta>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getContext(), "ERROR: " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-        List<String> pastaImages = new ArrayList<>(Pasta.pastas.size());
+                List<Pasta> pastas = response.body();
 
-        for (int i = 0; i < Pasta.pastas.size(); i++) {
-            pastaImages.add(Pasta.pastas.get(i).getImageURL());
-        }
+                for (int i = 0; i < pastas.size(); i++) {
+                   pastaNames.add(pastas.get(i).getName());
+                }
+                for (int i = 0; i < pastas.size(); i++) {
+                    pastaPrices.add(pastas.get(i).getPrice());
+                }
+                for (int i = 0; i < pastas.size(); i++) {
+                    pastaImages.add(pastas.get(i).getImageURL());
+                }
+                pastaRecycler.setAdapter(adapter);
+            }
 
-        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(pastaNames, pastaPrice, pastaImages);
+            @Override
+            public void onFailure(Call<List<Pasta>> call, Throwable t) {
+
+            }
+        });
+
+
+        adapter = new CaptionedImagesAdapter(pastaNames, pastaPrices, pastaImages);
         pastaRecycler.setAdapter(adapter);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         pastaRecycler.setLayoutManager(layoutManager);

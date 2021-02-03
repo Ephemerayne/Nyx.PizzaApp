@@ -22,17 +22,17 @@ public class PastaDetailActivity extends AppCompatActivity {
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 
         int pastaId = (Integer) getIntent().getExtras().get(EXTRA_PASTA_ID);
-        String pastaName = Pasta.pastas.get(pastaId).getName();
+//        String pastaName = Pasta.pastas.get(pastaId).getName();
         TextView title = findViewById(R.id.pasta_text);
-        title.setText(pastaName);
+//        title.setText(pastaName);
 
-        int pastaPrice = Pasta.pastas.get(pastaId).getPrice();
+//        int pastaPrice = Pasta.pastas.get(pastaId).getPrice();
         TextView price = findViewById(R.id.pasta_price);
-        price.setText(getString(R.string.prices, pastaPrice));
+//        price.setText(getString(R.string.prices, pastaPrice));
 
-       String pastaImage = Pasta.pastas.get(pastaId).getImageURL();
+//       String pastaImage = Pasta.pastas.get(pastaId).getImageURL();
         ImageView imageView = findViewById(R.id.pasta_image);
 //        imageView.setImageDrawable(ContextCompat.getDrawable(this, pastaImage));
-        imageView.setContentDescription(pastaName);
+//        imageView.setContentDescription(pastaName);
     }
 }

@@ -38,8 +38,8 @@ public class PizzaFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<List<Pizza>> call = jsonPlaceHolderApi.getPizzas();
+        JsonPizzasApi jsonPizzasApi = retrofit.create(JsonPizzasApi.class);
+        Call<List<Pizza>> call = jsonPizzasApi.getPizzas();
 
         call.enqueue(new Callback<List<Pizza>>() {
             @Override
