@@ -58,9 +58,7 @@ public class PizzaFragment extends Fragment {
                 }
                 for (int i = 0; i < pizzas.size(); i++) {
                     pizzaImages.add(pizzas.get(i).getImageURL());
-                    System.out.println("debugg: URL: " + pizzas.get(i).getImageURL());
                 }
-
                 pizzaRecycler.setAdapter(adapter);
             }
 

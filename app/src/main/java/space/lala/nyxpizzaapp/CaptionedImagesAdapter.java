@@ -1,20 +1,16 @@
 package space.lala.nyxpizzaapp;
 
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
@@ -80,15 +76,26 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
         if (imagesURLs.get(position) != null && !imagesURLs.get(position).isEmpty()) {
             Picasso.with(cardView.getContext())
                     .load(imagesURLs.get(position))
-                    .into(imageView);
+                    .fit().centerCrop()
+                    .into(imageView, new Callback.EmptyCallback() {
+                        @Override
+                        public void onSuccess() {
+                            super.onSuccess();
+                            cardView.findViewById(R.id.shimmer).setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            super.onError();
+                            imageView.setImageDrawable(cardView.getContext().getDrawable(R.drawable.pizza_error_loading));
+                        }
+                    });
         }
-//        Drawable drawable = ContextCompat.getDrawable(cardView.getContext(), (String) imagesURLs.get(position));
-//        imageView.setImageDrawable(drawable);
-        // TODO: set image with picasso
-        imageView.setContentDescription((CharSequence) names.get(position));
+
+        imageView.setContentDescription(names.get(position));
         TextView title = cardView.findViewById(R.id.title);
         TextView price = cardView.findViewById(R.id.price);
-        title.setText((String) names.get(position));
+        title.setText(names.get(position));
         price.setText(resources.getString(R.string.prices, prices.get(position)));
     }
 

@@ -8,9 +8,15 @@
     app:cardCornerRadius="4dp"
     android:id="@+id/card_view">
 
+    <com.marozzi.shimmerview.ShimmerView
+        android:id="@+id/shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:sv_shape_square_corner="2dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <ImageView
@@ -19,12 +25,14 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:scaleType="centerCrop" />
+
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginBottom="4dp"/>
+            android:layout_marginBottom="4dp" />
+
         <TextView
             android:id="@+id/price"
             android:layout_width="match_parent"
