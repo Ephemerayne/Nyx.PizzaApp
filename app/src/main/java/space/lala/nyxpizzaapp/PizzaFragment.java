@@ -62,10 +62,17 @@ public class PizzaFragment extends Fragment {
                 pizzaRecycler.setAdapter(adapter);
             }
 
+        productsRepository = new ProductsRepository(getActivity().getApplication());
 
-            @Override
-            public void onFailure(Call<List<Pizza>> call, Throwable t) {
+        productsRepository.getAllProducts(Product.Type.Pizza).observe(this, pizzas -> {
+            pizzaNames.clear();
+            pizzaPrices.clear();
+            pizzaImages.clear();
 
+            for (Product pizza : pizzas) {
+                pizzaNames.add(pizza.getTitle());
+                pizzaPrices.add(pizza.getPrice());
+                pizzaImages.add(pizza.getImageURL());
             }
         });
 
