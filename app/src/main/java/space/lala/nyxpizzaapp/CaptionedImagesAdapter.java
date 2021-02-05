@@ -6,19 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.squareup.picasso.Callback;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
 
     private List<String> names;
-    private List<Integer> prices;
+    private List<Double> prices;
     private List<String> imagesURLs;
 
     private Listener listener;
@@ -38,7 +39,7 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
 
     public CaptionedImagesAdapter(
             List<String> names,
-            List<Integer> prices,
+            List<Double> prices,
             List<String> imagesURLs
     ) {
         this.names = names;
