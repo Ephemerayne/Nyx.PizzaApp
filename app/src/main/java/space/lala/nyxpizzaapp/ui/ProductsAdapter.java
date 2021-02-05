@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -23,6 +21,7 @@ import java.util.stream.Collectors;
 
 import space.lala.nyxpizzaapp.R;
 import space.lala.nyxpizzaapp.model.Product;
+import space.lala.nyxpizzaapp.utils.PriceFormatter;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder> {
 
@@ -31,7 +30,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     private Listener listener;
 
     public interface Listener {
-        void onClick(int position);
+        void onClick(int id);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -59,7 +58,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     @NonNull
     @Override
     public ProductsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_captioned_image, parent, false);
+        CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_adapter, parent, false);
         return new ViewHolder(cv);
     }
 
@@ -68,8 +67,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         CardView cardView = holder.cardView;
         setViewsForProducts(cardView, position);
         cardView.setOnClickListener(v -> {
+            final Product product = products.get(position);
             if (listener != null) {
-                listener.onClick(position);
+                listener.onClick(product.getId());
             }
         });
     }
@@ -82,9 +82,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         TextView title = cardView.findViewById(R.id.title);
         TextView priceTextView = cardView.findViewById(R.id.price);
         title.setText(products.get(position).getTitle());
-        NumberFormat formatterPrice = new DecimalFormat("#0.00");
         final double price = products.get(position).getPrice();
-        priceTextView.setText(resources.getString(R.string.prices, formatterPrice.format(price)));
+        priceTextView.setText(resources.getString(R.string.prices, PriceFormatter.format(price)));
     }
 
     private void setProductImage(CardView cardView, int position) {
@@ -92,7 +91,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         if (products.get(position).getImageURL() != null && !products.get(position).getImageURL().isEmpty()) {
             Picasso.with(cardView.getContext())
                     .load(products.get(position).getImageURL())
-                    .fit().centerCrop()
+                    .fit()
+                    .centerCrop()
                     .into(imageView, new Callback.EmptyCallback() {
                         @Override
                         public void onSuccess() {
@@ -108,7 +108,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                     });
         }
 
-        imageView.setContentDescription(products.get(position).getTitle());
+       imageView.setContentDescription(products.get(position).getTitle());
     }
 
     @Override

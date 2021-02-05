@@ -64,7 +64,7 @@ public class ProductsRepository {
         return productDao.getAllProducts(type.ordinal());
     }
 
-    public LiveData<List<Product>> getProduct(int id) {
+    public LiveData<Product> getProduct(int id) {
         return productDao.getProduct(id);
     }
 

@@ -23,8 +23,8 @@ public interface ProductDao {
     LiveData<List<Product>> getAllProducts(int typeOrdinal);
 
     @Query("SELECT * FROM product_table WHERE type = :typeOrdinal")
-   List<Product> getAllProductsSync(int typeOrdinal);
+    List<Product> getAllProductsSync(int typeOrdinal);
 
     @Query("SELECT * FROM product_table WHERE id=:id LIMIT 1")
-    LiveData<List<Product>> getProduct(int id);
+    LiveData<Product> getProduct(int id);
 }

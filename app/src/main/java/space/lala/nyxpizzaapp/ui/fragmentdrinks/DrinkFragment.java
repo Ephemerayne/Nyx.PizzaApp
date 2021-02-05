@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import space.lala.nyxpizzaapp.R;
 import space.lala.nyxpizzaapp.model.Product;
 import space.lala.nyxpizzaapp.ui.ProductsAdapter;
-import space.lala.nyxpizzaapp.ui.activitydetailproducts.DrinkDetailActivity;
+import space.lala.nyxpizzaapp.ui.activitydetailproducts.ProductDetailActivity;
 
 public class DrinkFragment extends Fragment {
 
@@ -36,9 +36,9 @@ public class DrinkFragment extends Fragment {
                 .observe(this, drinks -> adapter.setProducts(drinks));
 
         adapter.setListener(new ProductsAdapter.Listener() {
-            public void onClick(int position) {
-                Intent intent = new Intent(getActivity(), DrinkDetailActivity.class);
-                intent.putExtra(DrinkDetailActivity.EXTRA_DRINK_ID, position);
+            public void onClick(int id) {
+                Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
+                intent.putExtra(ProductDetailActivity.EXTRA_PRODUCT_ID, id);
                 getActivity().startActivity(intent);
             }
         });

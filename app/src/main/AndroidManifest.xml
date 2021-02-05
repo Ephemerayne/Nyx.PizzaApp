@@ -11,7 +11,6 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.NyxPizzaApp">
-        <activity android:name=".ui.activitydetailproducts.PastaDetailActivity"/>
         <activity android:name=".ui.activitymain.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +27,7 @@
                 android:value=".ui.activitymain.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.activitydetailproducts.PizzaDetailActivity"
+            android:name=".ui.activitydetailproducts.ProductDetailActivity"
             android:parentActivityName=".ui.activitymain.MainActivity" />
     </application>
 
