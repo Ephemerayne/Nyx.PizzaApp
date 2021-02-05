@@ -11,8 +11,8 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.NyxPizzaApp">
-        <activity android:name=".PastaDetailActivity"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.activitydetailproducts.PastaDetailActivity"/>
+        <activity android:name=".ui.activitymain.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,16 +20,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".OrderActivity"
+            android:name=".ui.activityorder.OrderActivity"
             android:label="@string/create_order"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ui.activitymain.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".ui.activitymain.MainActivity" />
         </activity>
         <activity
-            android:name=".PizzaDetailActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ui.activitydetailproducts.PizzaDetailActivity"
+            android:parentActivityName=".ui.activitymain.MainActivity" />
     </application>
 
 </manifest>

@@ -1,22 +1,28 @@
-package space.lala.nyxpizzaapp;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ShareActionProvider;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuItemCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
+package space.lala.nyxpizzaapp.ui.activitymain;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import space.lala.nyxpizzaapp.R;
+import space.lala.nyxpizzaapp.ui.activityorder.OrderActivity;
+import space.lala.nyxpizzaapp.ui.fragmentmain.MainFragment;
+import space.lala.nyxpizzaapp.ui.fragmentpastas.PastaFragment;
+import space.lala.nyxpizzaapp.ui.fragmentpizzas.PizzaFragment;
+import space.lala.nyxpizzaapp.ui.fragmentstores.StoresFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -83,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
-                    return new TopFragment();
+                    return new MainFragment();
                 case 1:
                     return new PizzaFragment();
                 case 2:

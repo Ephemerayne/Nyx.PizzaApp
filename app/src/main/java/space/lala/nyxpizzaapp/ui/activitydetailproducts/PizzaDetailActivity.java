@@ -1,4 +1,4 @@
-package space.lala.nyxpizzaapp;
+package space.lala.nyxpizzaapp.ui.activitydetailproducts;
 
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -6,7 +6,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+
+import space.lala.nyxpizzaapp.R;
 
 public class PizzaDetailActivity extends AppCompatActivity {
 

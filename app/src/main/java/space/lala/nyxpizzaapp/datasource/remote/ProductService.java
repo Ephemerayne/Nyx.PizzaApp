@@ -6,8 +6,7 @@ import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import space.lala.nyxpizzaapp.JsonProductsApi;
-import space.lala.nyxpizzaapp.Product;
+import space.lala.nyxpizzaapp.model.Product;
 
 
 public class ProductService {

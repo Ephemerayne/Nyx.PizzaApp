@@ -1,0 +1,128 @@
+[
+ {
+    "id_from_server": 0,
+    "name": "Маргарита",
+    "price": 250,
+    "image": "http://yarobest.ru/nyx-pizza-app/pizza_pic/pizza_margarita.png",
+    "type": 0
+  },
+  {
+    "id_from_server": 1,
+    "name": "Гавайская",
+    "price": 320,
+    "image": "http://yarobest.ru/nyx-pizza-app/pizza_pic/pizza_gavai.png",
+    "type": 0
+  },
+  {
+    "id_from_server": 2,
+    "name": "Четыре сыра",
+    "price": 300,
+    "image": "http://yarobest.ru/nyx-pizza-app/pizza_pic/pizza_cheese.png",
+    "type": 0
+  },
+  {
+    "id_from_server": 3,
+    "name": "Мясная",
+    "price": 350,
+    "image": "http://yarobest.ru/nyx-pizza-app/pizza_pic/pizza_meat.png",
+    "type": 0
+  },
+  {
+    "id_from_server": 4,
+    "name": "Оливковая с базиликом",
+    "price": 290,
+    "image": "http://yarobest.ru/nyx-pizza-app/pizza_pic/pizza_olive_basilik.png",
+    "type": 0
+  },
+  {
+    "id_from_server": 5,
+    "name": "Пепперони",
+    "price": 340,
+    "image": "http://yarobest.ru/nyx-pizza-app/pizza_pic/pizza_pepperoni.png",
+    "type": 0
+  },
+  {
+    "id_from_server": 6,
+    "name": "Руккола",
+    "price": 300,
+    "image": "http://yarobest.ru/nyx-pizza-app/pizza_pic/pizza_rukkola.png",
+    "type": 0
+  },
+  {
+    "id_from_server": 7,
+    "name": "Сервелат",
+    "price": 400,
+    "image": "http://yarobest.ru/nyx-pizza-app/pizza_pic/pizza_servelat.png",
+    "type": 0
+  },
+  {
+    "id_from_server": 8,
+    "name": "Овощная",
+    "price": 290,
+    "image": "http://yarobest.ru/nyx-pizza-app/pizza_pic/pizza_vegetables.png",
+    "type": 0
+  },
+  {
+    "id_from_server": 9,
+    "name": "С сыром",
+    "price": 150,
+    "image": "http://yarobest.ru/nyx-pizza-app/pasta_pic/cheese_pasta.png",
+    "type": 1
+  },
+  {
+    "id_from_server": 10,
+    "name": "С капустой и овощами",
+    "price": 190,
+    "image": "http://yarobest.ru/nyx-pizza-app/pasta_pic/cabbage_vegetables_pasta.png",
+    "type": 1
+  },
+  {
+    "id_from_server": 11,
+    "name": "С цыпленком",
+    "price": 220,
+    "image": "http://yarobest.ru/nyx-pizza-app/pasta_pic/chicken_pasta.png",
+    "type": 1
+  },
+  {
+    "id_from_server": 12,
+    "name": "С кукурузой и салатом",
+    "price": 160,
+    "image": "http://yarobest.ru/nyx-pizza-app/pasta_pic/corn_salad_pasta.png",
+    "type": 1
+  },
+  {
+    "id_from_server": 13,
+    "name": "С лососем",
+    "price": 300,
+    "image": "http://yarobest.ru/nyx-pizza-app/pasta_pic/fish_pasta.png",
+    "type": 1
+  },
+  {
+    "id_from_server": 14,
+    "name": "С мясом и морковью",
+    "price": 250,
+    "image": "http://yarobest.ru/nyx-pizza-app/pasta_pic/meat_carrot_pasta.png",
+    "type": 1
+  },
+  {
+    "id_from_server": 15,
+    "name": "С грибами в сливочном соусе",
+    "price": 200,
+    "image": "http://yarobest.ru/nyx-pizza-app/pasta_pic/mushrooms_pasta.png",
+    "type": 1
+  },
+  {
+    "id_from_server": 16,
+    "name": "С креветками",
+    "price": 280,
+    "image": "http://yarobest.ru/nyx-pizza-app/pasta_pic/shrimp_pasta.png",
+    "type": 1
+  },
+  {
+    "id_from_server": 17,
+    "name": "C базиликом и помидорами",
+    "price": 180,
+    "image": "http://yarobest.ru/nyx-pizza-app/pasta_pic/vegan_pasta.png",
+    "type": 1
+  }
+]

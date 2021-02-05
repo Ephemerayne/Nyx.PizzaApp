@@ -1,6 +1,8 @@
-package space.lala.nyxpizzaapp;
+package space.lala.nyxpizzaapp.datasource.local;
 
 import androidx.room.TypeConverter;
+
+import space.lala.nyxpizzaapp.model.Product;
 
 public class ProductTypeConverter {
 

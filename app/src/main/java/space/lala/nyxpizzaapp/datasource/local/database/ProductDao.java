@@ -1,4 +1,4 @@
-package space.lala.nyxpizzaapp.database;
+package space.lala.nyxpizzaapp.datasource.local.database;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -8,7 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import space.lala.nyxpizzaapp.Product;
+import space.lala.nyxpizzaapp.model.Product;
 
 @Dao
 public interface ProductDao {

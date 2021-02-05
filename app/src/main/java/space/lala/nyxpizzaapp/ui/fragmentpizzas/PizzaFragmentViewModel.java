@@ -1,4 +1,4 @@
-package space.lala.nyxpizzaapp;
+package space.lala.nyxpizzaapp.ui.fragmentpizzas;
 
 import android.app.Application;
 
@@ -8,12 +8,13 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import space.lala.nyxpizzaapp.repository.ProductsRepository;
+import space.lala.nyxpizzaapp.datasource.repository.ProductsRepository;
+import space.lala.nyxpizzaapp.model.Product;
 
-public class PizzaViewModel extends AndroidViewModel {
+public class PizzaFragmentViewModel extends AndroidViewModel {
     private ProductsRepository repository;
 
-    public PizzaViewModel(@NonNull Application application) {
+    public PizzaFragmentViewModel(@NonNull Application application) {
         super(application);
         repository = new ProductsRepository(application);
     }

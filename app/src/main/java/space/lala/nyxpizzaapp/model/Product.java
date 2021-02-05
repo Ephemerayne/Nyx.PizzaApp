@@ -1,4 +1,4 @@
-package space.lala.nyxpizzaapp;
+package space.lala.nyxpizzaapp.model;
 
 import androidx.annotation.Nullable;
 import androidx.room.Entity;
@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.google.gson.annotations.SerializedName;
+
+import space.lala.nyxpizzaapp.datasource.local.ProductTypeConverter;
 
 @Entity(tableName = "product_table", indices = {@Index(value = {"idFromServer"},
         unique = true)})

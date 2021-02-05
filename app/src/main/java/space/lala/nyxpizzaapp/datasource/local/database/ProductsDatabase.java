@@ -1,4 +1,4 @@
-package space.lala.nyxpizzaapp.database;
+package space.lala.nyxpizzaapp.datasource.local.database;
 
 import android.content.Context;
 
@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import space.lala.nyxpizzaapp.Product;
+import space.lala.nyxpizzaapp.model.Product;
 
 @Database(entities = {Product.class}, version = 1)
 public abstract class ProductsDatabase extends RoomDatabase {

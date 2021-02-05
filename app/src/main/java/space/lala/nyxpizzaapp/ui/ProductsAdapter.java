@@ -1,4 +1,4 @@
-package space.lala.nyxpizzaapp;
+package space.lala.nyxpizzaapp.ui;
 
 import android.content.res.Resources;
 import android.view.LayoutInflater;
@@ -19,13 +19,16 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
+import space.lala.nyxpizzaapp.R;
+import space.lala.nyxpizzaapp.model.Product;
+
+public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder> {
 
     private List<Product> products = new ArrayList<>();
 
     private Listener listener;
 
-    interface Listener {
+    public interface Listener {
         void onClick(int position);
     }
 
@@ -53,7 +56,7 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
 
     @NonNull
     @Override
-    public CaptionedImagesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProductsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_captioned_image, parent, false);
         return new ViewHolder(cv);
     }

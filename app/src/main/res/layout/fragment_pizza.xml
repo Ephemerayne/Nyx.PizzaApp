@@ -5,6 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
-    tools:context=".PizzaFragment">
+    tools:context=".ui.fragmentpizzas.PizzaFragment">
 
 </androidx.recyclerview.widget.RecyclerView>

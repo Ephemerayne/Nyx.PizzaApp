@@ -1,4 +1,4 @@
-package space.lala.nyxpizzaapp.repository;
+package space.lala.nyxpizzaapp.datasource.repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -11,10 +11,10 @@ import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import space.lala.nyxpizzaapp.Product;
-import space.lala.nyxpizzaapp.database.ProductDao;
-import space.lala.nyxpizzaapp.database.ProductsDatabase;
+import space.lala.nyxpizzaapp.datasource.local.database.ProductDao;
+import space.lala.nyxpizzaapp.datasource.local.database.ProductsDatabase;
 import space.lala.nyxpizzaapp.datasource.remote.ProductService;
+import space.lala.nyxpizzaapp.model.Product;
 
 public class ProductsRepository {
     private ProductDao productDao;
