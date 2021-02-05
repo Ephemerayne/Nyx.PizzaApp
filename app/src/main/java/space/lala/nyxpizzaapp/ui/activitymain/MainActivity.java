@@ -19,10 +19,10 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import space.lala.nyxpizzaapp.R;
 import space.lala.nyxpizzaapp.ui.activityorder.OrderActivity;
+import space.lala.nyxpizzaapp.ui.fragmentdrinks.DrinkFragment;
 import space.lala.nyxpizzaapp.ui.fragmentmain.MainFragment;
 import space.lala.nyxpizzaapp.ui.fragmentpastas.PastaFragment;
 import space.lala.nyxpizzaapp.ui.fragmentpizzas.PizzaFragment;
-import space.lala.nyxpizzaapp.ui.fragmentstores.StoresFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                             tab.setText(R.string.pasta_tab);
                             break;
                         case 3:
-                            tab.setText(R.string.store_tab);
+                            tab.setText(R.string.drinks_tab);
                             break;
                     }
                 }
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 case 2:
                     return new PastaFragment();
                 case 3:
-                    return new StoresFragment();
+                    return new DrinkFragment();
             }
             return null;
         }

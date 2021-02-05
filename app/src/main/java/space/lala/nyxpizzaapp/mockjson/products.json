@@ -125,4 +125,75 @@
     "image": "http://yarobest.ru/nyx-pizza-app/pasta_pic/vegan_pasta.png",
     "type": 1
   }
+,
+  {
+    "id_from_server": 18,
+    "name": "Лимонад Coca-Cola 1.5L",
+    "price": 80,
+    "image": "http://yarobest.ru/nyx-pizza-app/drinks_pic/coca-cola_1l.png",
+    "type": 2
+  }
+,
+  {
+    "id_from_server": 19,
+    "name": "Холодный чёрный чай Nestea Лимон 0.75L",
+    "price": 65,
+    "image": "http://yarobest.ru/nyx-pizza-app/drinks_pic/cold_black_tea_lemon_1l.png",
+    "type": 2
+  }
+,
+  {
+    "id_from_server": 20,
+    "name": "Холодный зеленый чай Nestea 0.75L",
+    "price": 65,
+    "image": "http://yarobest.ru/nyx-pizza-app/drinks_pic/cold_green_tea_1l.png",
+    "type": 2
+  }
+,
+  {
+    "id_from_server": 21,
+    "name": "Лимонад Fanta 1.5L",
+    "price": 80,
+    "image": "http://yarobest.ru/nyx-pizza-app/drinks_pic/fanta_1l.png",
+    "type": 1
+  }
+,
+  {
+    "id_from_server": 22,
+    "name": "Сок Rich Вишня 1L",
+    "price": 160,
+    "image": "http://yarobest.ru/nyx-pizza-app/drinks_pic/rich_cherry_1l.png",
+    "type": 2
+  }
+,
+  {
+    "id_from_server": 23,
+    "name": "Сок Rich Апельсин 1L",
+    "price": 150,
+    "image": "http://yarobest.ru/nyx-pizza-app/drinks_pic/rich_orange_1l.png",
+    "type": 2
+  }
+,
+  {
+    "id_from_server": 24,
+    "name": "Лимонад Sprite 1L",
+    "price": 80,
+    "image": "http://yarobest.ru/nyx-pizza-app/drinks_pic/sprite_1l.png",
+    "type": 2
+  }
+,
+  {
+    "id_from_server": 25,
+    "name": "Газированная вода Волна Байкала 1L",
+    "price": 70,
+    "image": "http://yarobest.ru/nyx-pizza-app/drinks_pic/water_baikal_1l.png",
+    "type": 2
+  },
+  {
+    "id_from_server": 26,
+    "name": "Негазированная вода Шишкин Лес 1.75L",
+    "price": 60,
+    "image": "http://yarobest.ru/nyx-pizza-app/drinks_pic/water_forest_1.75l.png",
+    "type": 2
+  }
 ]
