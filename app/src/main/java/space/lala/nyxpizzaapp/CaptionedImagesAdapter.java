@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
 
-    private List<String> names;
-    private List<Double> prices;
-    private List<String> imagesURLs;
+    private List<Product> products = new ArrayList<>();
 
     private Listener listener;
 
@@ -37,14 +38,13 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
         }
     }
 
-    public CaptionedImagesAdapter(
-            List<String> names,
-            List<Double> prices,
-            List<String> imagesURLs
-    ) {
-        this.names = names;
-        this.prices = prices;
-        this.imagesURLs = imagesURLs;
+    public void setProducts(List<Product> products) {
+        this.products.clear();
+        this.products.addAll(products.stream()
+                .sorted(Comparator.comparing(Product::getTitle))
+                .collect(Collectors.toList())
+        );
+        notifyDataSetChanged();
     }
 
     public void setListener(Listener listener) {
@@ -76,9 +76,9 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
         final Resources resources = cardView.getResources();
         ImageView imageView = cardView.findViewById(R.id.image);
 
-        if (imagesURLs.get(position) != null && !imagesURLs.get(position).isEmpty()) {
+        if (products.get(position).getImageURL() != null && !products.get(position).getImageURL().isEmpty()) {
             Picasso.with(cardView.getContext())
-                    .load(imagesURLs.get(position))
+                    .load(products.get(position).getImageURL())
                     .fit().centerCrop()
                     .into(imageView, new Callback.EmptyCallback() {
                         @Override
@@ -95,15 +95,15 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
                     });
         }
 
-        imageView.setContentDescription(names.get(position));
+        imageView.setContentDescription(products.get(position).getTitle());
         TextView title = cardView.findViewById(R.id.title);
         TextView price = cardView.findViewById(R.id.price);
-        title.setText(names.get(position));
-        price.setText(resources.getString(R.string.prices, prices.get(position)));
+        title.setText(products.get(position).getTitle());
+        price.setText(resources.getString(R.string.prices, products.get(position).getPrice()));
     }
 
     @Override
     public int getItemCount() {
-        return names.size();
+        return products.size();
     }
 }

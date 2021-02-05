@@ -11,45 +11,24 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import space.lala.nyxpizzaapp.repository.ProductsRepository;
-
 public class PizzaFragment extends Fragment {
 
-    List<String> pizzaNames = new ArrayList<>();
-    List<Double> pizzaPrices = new ArrayList<>();
-    List<String> pizzaImages = new ArrayList<>();
     CaptionedImagesAdapter adapter;
-    ProductsRepository productsRepository;
     private PizzaViewModel pizzaViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        RecyclerView pizzaRecycler = (RecyclerView) inflater.inflate(R.layout.fragment_pizza, container, false);
-
-        pizzaViewModel = ViewModelProviders.of(this).get(PizzaViewModel.class);
-        pizzaViewModel.getPizzas(Product.Type.Pizza).observe(this, pizzas -> pizzaRecycler.setAdapter(adapter));
-
-        productsRepository = new ProductsRepository(getActivity().getApplication());
-
-        productsRepository.getAllProducts(Product.Type.Pizza).observe(this, pizzas -> {
-            pizzaNames.clear();
-            pizzaPrices.clear();
-            pizzaImages.clear();
-
-            for (Product pizza : pizzas) {
-                pizzaNames.add(pizza.getTitle());
-                pizzaPrices.add(pizza.getPrice());
-                pizzaImages.add(pizza.getImageURL());
-            }
-        });
-
-        adapter = new CaptionedImagesAdapter(pizzaNames, pizzaPrices, pizzaImages);
+        View view = inflater.inflate(R.layout.fragment_pizza, container, false);
+        RecyclerView pizzaRecycler = (RecyclerView) view.findViewById(R.id.pizza_recycler);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         pizzaRecycler.setLayoutManager(layoutManager);
+        adapter = new CaptionedImagesAdapter();
+
+        pizzaRecycler.setAdapter(adapter);
+        pizzaViewModel = ViewModelProviders.of(this).get(PizzaViewModel.class);
+        pizzaViewModel.getPizzas(Product.Type.Pizza)
+                .observe(this, pizzas -> adapter.setProducts(pizzas));
 
         adapter.setListener(new CaptionedImagesAdapter.Listener() {
             public void onClick(int position) {
