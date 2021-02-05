@@ -26,15 +26,14 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     public void onClickDone(View view) {
-        CharSequence text = "Ваш заказ был обновлен!";
-        int duration = Snackbar.LENGTH_SHORT;
-        Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator), text, duration);
-        snackbar.setAction("Вернуться",
+        CharSequence text = "Ваш заказ был отправлен!";
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator), text, 10000);
+        snackbar.setAction("Посмотреть",
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Toast toast = Toast.makeText(OrderActivity.this, "Отменено!",
-                                Toast.LENGTH_SHORT);
+                                Toast.LENGTH_LONG);
                         toast.show();
                     }
                 });

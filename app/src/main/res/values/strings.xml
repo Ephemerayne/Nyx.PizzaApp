@@ -22,5 +22,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="prices">%s ₽</string>
     <string name="add_product">Добавить к заказу</string>
+    <string name="image_description">Изображение товара</string>
 
 </resources>
