@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_add_product_in_basket"
-        android:title="@string/create_order_title"
+        app:actionLayout="@layout/badge_cart"
         android:icon="@drawable/ic_shopping_basket_24"
         android:orderInCategory="1"
-        app:showAsAction="ifRoom" />
+        android:title="@string/create_order_title"
+        app:showAsAction="always" />
 </menu>

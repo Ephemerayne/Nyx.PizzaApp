@@ -23,5 +23,7 @@
     <string name="prices">%s ₽</string>
     <string name="add_product">Добавить к заказу</string>
     <string name="image_description">Изображение товара</string>
+    <string name="add_order">Добавить к заказу</string>
+    <string name="user_add_products">Выбранные товары</string>
 
 </resources>
