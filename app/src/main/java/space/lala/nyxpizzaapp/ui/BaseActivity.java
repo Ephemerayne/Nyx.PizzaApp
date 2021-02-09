@@ -20,29 +20,32 @@ public abstract class BaseActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         imageBadgeView = (ImageBadgeView) menu.findItem(R.id.action_add_product_in_basket).getActionView();
-
         viewModel = ViewModelProviders.of(this).get(BaseActivityViewModel.class);
         viewModel.getSelectedProducts().observe(this, products -> {
             imageBadgeView.setBadgeValue(products.size());
         });
-
+        setCartClickListener(menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_add_product_in_basket:
-                Intent intent = new Intent(this, OrderActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                onBackPressed();
-                return true;
-        }
+        onBackPressed();
+        return true;
     }
 
-//    public void setBasketValue(int value) {
-//        imageBadgeView.setBadgeValue(value);
-//    }
+    private void setCartClickListener(Menu menu) {
+        for (int i = 0; i < menu.size(); i++) {
+            MenuItem item = menu.getItem(i);
+            if (item.getItemId() == R.id.action_add_product_in_basket) {
+                imageBadgeView = (ImageBadgeView) item.getActionView();
+                if (imageBadgeView != null) {
+                    imageBadgeView.setOnClickListener(view -> {
+                        Intent intent = new Intent(this, OrderActivity.class);
+                        startActivity(intent);
+                    });
+                }
+            }
+        }
+    }
 }

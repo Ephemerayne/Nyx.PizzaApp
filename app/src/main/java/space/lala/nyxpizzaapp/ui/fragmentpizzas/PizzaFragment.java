@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -18,7 +17,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import ru.nikartm.support.ImageBadgeView;
 import space.lala.nyxpizzaapp.ProductCheckBoxListener;
 import space.lala.nyxpizzaapp.R;
 import space.lala.nyxpizzaapp.model.Product;
@@ -29,9 +27,7 @@ public class PizzaFragment extends Fragment implements ProductCheckBoxListener {
 
     ProductsAdapter adapter;
     private PizzaFragmentViewModel viewModel;
-    ImageBadgeView imageBadgeView;
     Menu menu;
-    CheckBox checkBox;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

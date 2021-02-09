@@ -11,6 +11,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.observers.DisposableSingleObserver;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import space.lala.nyxpizzaapp.ProductCheckBoxListener;
 import space.lala.nyxpizzaapp.R;
 import space.lala.nyxpizzaapp.model.Product;
@@ -20,7 +24,7 @@ import space.lala.nyxpizzaapp.ui.activitydetailproducts.ProductDetailActivity;
 public class DrinkFragment extends Fragment implements ProductCheckBoxListener {
 
     ProductsAdapter adapter;
-    private DrinkFragmentViewModel drinkFragmentViewModel;
+    private DrinkFragmentViewModel viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,8 +36,8 @@ public class DrinkFragment extends Fragment implements ProductCheckBoxListener {
         adapter = new ProductsAdapter(this::selectProduct);
 
         drinkRecycler.setAdapter(adapter);
-        drinkFragmentViewModel = ViewModelProviders.of(this).get(DrinkFragmentViewModel.class);
-        drinkFragmentViewModel.getDrinks(Product.Type.Drinks)
+        viewModel = ViewModelProviders.of(this).get(DrinkFragmentViewModel.class);
+        viewModel.getDrinks(Product.Type.Drinks)
                 .observe(this, drinks -> adapter.setProducts(drinks));
 
         adapter.setListener(new ProductsAdapter.Listener() {
@@ -48,6 +52,20 @@ public class DrinkFragment extends Fragment implements ProductCheckBoxListener {
 
     @Override
     public void selectProduct(int id, boolean isChecked) {
+        viewModel.getProductSingle(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DisposableSingleObserver<Product>() {
+                    @Override
+                    public void onSuccess(@NonNull Product product) {
+                        product.setSelected(isChecked);
+                        viewModel.update(product);
+                    }
 
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+                });
     }
 }

@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Single;
 import space.lala.nyxpizzaapp.datasource.repository.ProductsRepository;
 import space.lala.nyxpizzaapp.model.Product;
 
@@ -21,5 +22,13 @@ public class PastaFragmentViewModel extends AndroidViewModel {
 
     public LiveData<List<Product>> getPastas(Product.Type type) {
         return repository.getAllProducts(type);
+    }
+
+    public Single<Product> getProductSingle(int id) {
+        return repository.getProductSingle(id);
+    }
+
+    public void update(Product product) {
+        repository.update(product);
     }
 }
