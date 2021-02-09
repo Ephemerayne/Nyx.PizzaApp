@@ -37,7 +37,7 @@ public class DrinkFragment extends Fragment implements ProductCheckBoxListener {
 
         drinkRecycler.setAdapter(adapter);
         viewModel = ViewModelProviders.of(this).get(DrinkFragmentViewModel.class);
-        viewModel.getDrinks(Product.Type.Drinks)
+        viewModel.getDrinks()
                 .observe(this, drinks -> adapter.setProducts(drinks));
 
         adapter.setListener(new ProductsAdapter.Listener() {

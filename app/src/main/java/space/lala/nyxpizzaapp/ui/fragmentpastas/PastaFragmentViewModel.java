@@ -20,8 +20,8 @@ public class PastaFragmentViewModel extends AndroidViewModel {
         repository = new ProductsRepository(application);
     }
 
-    public LiveData<List<Product>> getPastas(Product.Type type) {
-        return repository.getAllProducts(type);
+    public LiveData<List<Product>> getPastas() {
+        return repository.getAllProducts(Product.Type.Pasta);
     }
 
     public Single<Product> getProductSingle(int id) {

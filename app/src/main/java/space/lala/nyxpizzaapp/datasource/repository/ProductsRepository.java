@@ -36,7 +36,7 @@ public class ProductsRepository {
 
                     @Override
                     public void onNext(@NonNull List<Product> serverProducts) {
-                        List<Product> localProducts = productDao.getAllProductsSync(0);
+                        List<Product> localProducts = productDao.getAllProductsSync();
 
                         for (Product localProduct : localProducts) {
                             if (!serverProducts.contains(localProduct)) {

@@ -37,7 +37,7 @@ public class PastaFragment extends Fragment implements ProductCheckBoxListener {
 
         pastaRecycler.setAdapter(adapter);
         viewModel = ViewModelProviders.of(this).get(PastaFragmentViewModel.class);
-        viewModel.getPastas(Product.Type.Pasta)
+        viewModel.getPastas()
                 .observe(this, pastas -> adapter.setProducts(pastas));
 
         adapter.setListener(new ProductsAdapter.Listener() {

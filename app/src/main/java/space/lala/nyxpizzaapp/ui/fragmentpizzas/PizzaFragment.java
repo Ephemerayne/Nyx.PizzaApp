@@ -3,8 +3,6 @@ package space.lala.nyxpizzaapp.ui.fragmentpizzas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,7 +25,6 @@ public class PizzaFragment extends Fragment implements ProductCheckBoxListener {
 
     ProductsAdapter adapter;
     private PizzaFragmentViewModel viewModel;
-    Menu menu;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,7 +37,8 @@ public class PizzaFragment extends Fragment implements ProductCheckBoxListener {
 
         pizzaRecycler.setAdapter(adapter);
         viewModel = ViewModelProviders.of(this).get(PizzaFragmentViewModel.class);
-        viewModel.getPizzas().observe(this, pizzas -> adapter.setProducts(pizzas));
+        viewModel.getPizzas()
+                .observe(this, pizzas -> adapter.setProducts(pizzas));
 
         adapter.setListener(new ProductsAdapter.Listener() {
             public void onClick(int id) {
@@ -50,12 +48,6 @@ public class PizzaFragment extends Fragment implements ProductCheckBoxListener {
             }
         });
         return pizzaRecycler;
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        this.menu = menu;
-        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override

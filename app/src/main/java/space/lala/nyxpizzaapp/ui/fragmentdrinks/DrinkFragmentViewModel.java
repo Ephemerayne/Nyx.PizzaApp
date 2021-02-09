@@ -20,8 +20,8 @@ public class DrinkFragmentViewModel extends AndroidViewModel {
         repository = new ProductsRepository(application);
     }
 
-    public LiveData<List<Product>> getDrinks(Product.Type type) {
-        return repository.getAllProducts(type);
+    public LiveData<List<Product>> getDrinks() {
+        return repository.getAllProducts(Product.Type.Drinks);
     }
 
     public Single<Product> getProductSingle(int id) {
