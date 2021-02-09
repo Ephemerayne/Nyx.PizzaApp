@@ -5,9 +5,11 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Single;
 import space.lala.nyxpizzaapp.model.Product;
 
 @Dao
@@ -27,4 +29,13 @@ public interface ProductDao {
 
     @Query("SELECT * FROM product_table WHERE id=:id LIMIT 1")
     LiveData<Product> getProduct(int id);
+
+    @Update
+    void update(Product product);
+
+    @Query("SELECT * FROM product_table WHERE id=:id LIMIT 1")
+    Single<Product> getProductSingle(int id);
+
+    @Query("SELECT * FROM product_table WHERE isSelected = 1")
+    LiveData<List<Product>> getSelectedProducts();
 }

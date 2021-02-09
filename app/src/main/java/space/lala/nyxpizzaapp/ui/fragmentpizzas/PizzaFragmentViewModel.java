@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Single;
 import space.lala.nyxpizzaapp.datasource.repository.ProductsRepository;
 import space.lala.nyxpizzaapp.model.Product;
 
@@ -19,7 +20,15 @@ public class PizzaFragmentViewModel extends AndroidViewModel {
         repository = new ProductsRepository(application);
     }
 
-    public LiveData<List<Product>> getPizzas(Product.Type type) {
-        return repository.getAllProducts(type);
+    public LiveData<List<Product>> getPizzas() {
+        return repository.getAllProducts(Product.Type.Pizza);
+    }
+
+    public Single<Product> getProductSingle(int id) {
+        return repository.getProductSingle(id);
+    }
+
+    public void update(Product product) {
+        repository.update(product);
     }
 }

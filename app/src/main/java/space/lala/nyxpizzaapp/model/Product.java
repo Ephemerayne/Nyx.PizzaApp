@@ -27,6 +27,7 @@ public class Product {
     private final String description;
     private final double price;
     private final Type type;
+    private boolean isSelected = false;
 
     @SerializedName("image")
     private final String imageURL;
@@ -66,6 +67,14 @@ public class Product {
                 product.type == type &&
                 product.imageURL.equals(imageURL);
 
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
     public int getId() {

@@ -1,22 +1,15 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="48dp"
-    android:layout_height="fill_parent"
+<ru.nikartm.support.ImageBadgeView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_gravity="right">
-
-    <ru.nikartm.support.ImageBadgeView
-        android:id="@+id/quantity_products"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="8dp"
-        app:ibv_badgeValue="1"
-        app:ibv_badgeTextSize="12sp"
-        app:ibv_fixedBadgeRadius="8dp"
-        app:ibv_badgeTextStyle="bold"
-        app:ibv_badgeTextColor="#ffffff"
-        app:ibv_badgeColor="#00ACC1"
-        app:ibv_badgeLimitValue="false"
-        android:src="@drawable/ic_shopping_basket_24" />
-
-</FrameLayout>
+    android:id="@+id/quantity_products"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="8dp"
+    android:src="@drawable/ic_shopping_basket_24"
+    app:ibv_badgeColor="#00ACC1"
+    app:ibv_badgeLimitValue="false"
+    app:ibv_badgeTextColor="#ffffff"
+    app:ibv_badgeTextSize="12sp"
+    app:ibv_badgeTextStyle="bold"
+    app:ibv_badgeValue="0"
+    app:ibv_fixedBadgeRadius="8dp" />

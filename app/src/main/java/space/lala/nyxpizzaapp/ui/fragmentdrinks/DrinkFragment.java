@@ -11,12 +11,13 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import space.lala.nyxpizzaapp.ProductCheckBoxListener;
 import space.lala.nyxpizzaapp.R;
 import space.lala.nyxpizzaapp.model.Product;
 import space.lala.nyxpizzaapp.ui.ProductsAdapter;
 import space.lala.nyxpizzaapp.ui.activitydetailproducts.ProductDetailActivity;
 
-public class DrinkFragment extends Fragment {
+public class DrinkFragment extends Fragment implements ProductCheckBoxListener {
 
     ProductsAdapter adapter;
     private DrinkFragmentViewModel drinkFragmentViewModel;
@@ -28,7 +29,7 @@ public class DrinkFragment extends Fragment {
         RecyclerView drinkRecycler = view.findViewById(R.id.drink_recycler);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         drinkRecycler.setLayoutManager(layoutManager);
-        adapter = new ProductsAdapter();
+        adapter = new ProductsAdapter(this::selectProduct);
 
         drinkRecycler.setAdapter(adapter);
         drinkFragmentViewModel = ViewModelProviders.of(this).get(DrinkFragmentViewModel.class);
@@ -43,5 +44,10 @@ public class DrinkFragment extends Fragment {
             }
         });
         return drinkRecycler;
+    }
+
+    @Override
+    public void selectProduct(int id, boolean isChecked) {
+
     }
 }

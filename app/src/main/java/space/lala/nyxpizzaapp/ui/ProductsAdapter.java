@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import space.lala.nyxpizzaapp.ProductCheckBoxListener;
 import space.lala.nyxpizzaapp.R;
 import space.lala.nyxpizzaapp.model.Product;
 import space.lala.nyxpizzaapp.utils.PriceFormatter;
@@ -28,17 +30,23 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     private List<Product> products = new ArrayList<>();
 
     private Listener listener;
+    private ProductCheckBoxListener checkBoxListener;
+
+    public ProductsAdapter(ProductCheckBoxListener checkBoxListener) {
+        this.checkBoxListener = checkBoxListener;
+    }
 
     public interface Listener {
         void onClick(int id);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
 
         public ViewHolder(CardView v) {
             super(v);
             cardView = v;
+
         }
     }
 
@@ -66,10 +74,18 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CardView cardView = holder.cardView;
         setViewsForProducts(cardView, position);
+        final Product product = products.get(position);
         cardView.setOnClickListener(v -> {
-            final Product product = products.get(position);
             if (listener != null) {
                 listener.onClick(product.getId());
+            }
+        });
+        CheckBox checkBox = cardView.findViewById(R.id.checkbox_product);
+        checkBox.setChecked(product.isSelected());
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkBoxListener.selectProduct(product.getId(), checkBox.isChecked());
             }
         });
     }

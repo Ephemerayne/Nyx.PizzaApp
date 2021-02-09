@@ -3,7 +3,6 @@ package space.lala.nyxpizzaapp.ui.activitymain;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.ShareActionProvider;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -22,7 +21,6 @@ import space.lala.nyxpizzaapp.ui.fragmentpizzas.PizzaFragment;
 
 
 public class MainActivity extends BaseActivity {
-    private ShareActionProvider shareActionProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
