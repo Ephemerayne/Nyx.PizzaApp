@@ -43,9 +43,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
 
-        public ViewHolder(CardView v) {
-            super(v);
-            cardView = v;
+        public ViewHolder(CardView cardView) {
+            super(cardView);
+            this.cardView = cardView;
 
         }
     }

@@ -25,5 +25,7 @@
     <string name="image_description">Изображение товара</string>
     <string name="add_order">Добавить к заказу</string>
     <string name="user_add_products">Выбранные товары</string>
+    <string name="select_products">Выбранные товары:</string>
+    <string name="sum">Итого</string>
 
 </resources>

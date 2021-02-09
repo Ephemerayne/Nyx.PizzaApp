@@ -7,13 +7,20 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import space.lala.nyxpizzaapp.CartProductsAdapter;
 import space.lala.nyxpizzaapp.R;
 
 
 public class OrderActivity extends AppCompatActivity {
+
+    CartProductsAdapter adapter;
+    private OrderActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +30,17 @@ public class OrderActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        RecyclerView cartProductsRecycler = findViewById(R.id.cart_products_recycler);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        cartProductsRecycler.setLayoutManager(layoutManager);
+        adapter = new CartProductsAdapter();
+        cartProductsRecycler.setAdapter(adapter);
+
+        viewModel = ViewModelProviders.of(this).get(OrderActivityViewModel.class);
+        viewModel.getSelectedProducts().observe(this, cartProducts -> {
+            adapter.setSelectedProducts(cartProducts);
+        });
     }
 
     public void onClickDone(View view) {
