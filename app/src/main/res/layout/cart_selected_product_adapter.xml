@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="4dp"
     android:layout_margin="2dp"
+    app:cardCornerRadius="4dp"
     app:cardElevation="2dp">
 
     <LinearLayout
@@ -42,22 +42,21 @@
             tools:text="PRODUCT PRICE" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/decrease_button"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:text="-" />
 
-        <EditText
+        <TextView
+            android:id="@+id/quantity_product"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:inputType="number"
-            android:text="1"
-            />
+            android:layout_marginHorizontal="12dp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/increase_button"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"

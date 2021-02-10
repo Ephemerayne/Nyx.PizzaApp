@@ -1,7 +1,6 @@
 package space.lala.nyxpizzaapp.ui.activityorder;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,11 +9,13 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import space.lala.nyxpizzaapp.CartProductListener;
 import space.lala.nyxpizzaapp.CartProductsAdapter;
 import space.lala.nyxpizzaapp.R;
+import space.lala.nyxpizzaapp.model.Product;
 
 
-public class OrderActivity extends AppCompatActivity {
+public class OrderActivity extends AppCompatActivity implements CartProductListener {
 
     CartProductsAdapter adapter;
     private OrderActivityViewModel viewModel;
@@ -31,7 +32,7 @@ public class OrderActivity extends AppCompatActivity {
         RecyclerView cartProductsRecycler = findViewById(R.id.cart_products_recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         cartProductsRecycler.setLayoutManager(layoutManager);
-        adapter = new CartProductsAdapter();
+        adapter = new CartProductsAdapter(this::addRemoveQuantityOfProduct);
         cartProductsRecycler.setAdapter(adapter);
 
         viewModel = ViewModelProviders.of(this).get(OrderActivityViewModel.class);
@@ -40,7 +41,13 @@ public class OrderActivity extends AppCompatActivity {
         });
     }
 
-    public void onClickDone(View view) {
+    @Override
+    public void addRemoveQuantityOfProduct(Product product) {
+        viewModel.update(product);
+    }
+
+
+//    public void onClickDone(View view) {
 //        CharSequence text = "Ваш заказ был отправлен!";
 //        Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator), text, 10000);
 //        snackbar.setAction("Посмотреть",
@@ -54,4 +61,4 @@ public class OrderActivity extends AppCompatActivity {
 //                });
 //        snackbar.show();
     }
-}
+

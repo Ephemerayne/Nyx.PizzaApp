@@ -108,7 +108,6 @@ public class ProductDetailActivity extends BaseActivity {
                 });
     }
 
-
     private void setToolbarTitle(Product.Type productType) {
         switch (productType) {
             case Pizza:

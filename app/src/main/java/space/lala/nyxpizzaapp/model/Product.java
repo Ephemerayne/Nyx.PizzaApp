@@ -28,6 +28,7 @@ public class Product {
     private final double price;
     private final Type type;
     private boolean isSelected = false;
+    private int quantityOfSelectedProduct = 0;
 
     @SerializedName("image")
     private final String imageURL;
@@ -75,6 +76,14 @@ public class Product {
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    public int getQuantityOfSelectedProduct() {
+        return quantityOfSelectedProduct;
+    }
+
+    public void setQuantityOfSelectedProduct(int quantityOfSelectedProduct) {
+        this.quantityOfSelectedProduct = quantityOfSelectedProduct;
     }
 
     public int getId() {

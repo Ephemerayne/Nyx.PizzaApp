@@ -59,6 +59,13 @@ public class PastaFragment extends Fragment implements ProductCheckBoxListener {
                     @Override
                     public void onSuccess(@NonNull Product product) {
                         product.setSelected(isChecked);
+
+                        if (isChecked) {
+                            product.setQuantityOfSelectedProduct(1);
+                        } else {
+                            product.setQuantityOfSelectedProduct(0);
+                        }
+
                         viewModel.update(product);
                     }
 

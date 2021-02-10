@@ -3,6 +3,7 @@ package space.lala.nyxpizzaapp;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,8 +22,10 @@ import space.lala.nyxpizzaapp.utils.PriceFormatter;
 
 public class CartProductsAdapter extends RecyclerView.Adapter<CartProductsAdapter.ViewHolder> {
     private List<Product> cartProducts = new ArrayList<>();
+    private CartProductListener cartProductListener;
 
-    public CartProductsAdapter() {
+    public CartProductsAdapter(CartProductListener cartProductListener) {
+        this.cartProductListener = cartProductListener;
     }
 
     public void setSelectedProducts(List<Product> selectedProducts) {
@@ -41,7 +44,32 @@ public class CartProductsAdapter extends RecyclerView.Adapter<CartProductsAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CardView cardView = holder.cardView;
+        final Product product = cartProducts.get(position);
+        Button decreaseButton = cardView.findViewById(R.id.decrease_button);
+        TextView quantityProduct = cardView.findViewById(R.id.quantity_product);
+        quantityProduct.setText(String.valueOf(product.getQuantityOfSelectedProduct()));
+
         setViewsForSelectedProducts(cardView, position);
+        initCartButtons(cardView, product);
+    }
+
+    private void initCartButtons(CardView cardView, Product product) {
+        cardView.findViewById(R.id.increase_button).setOnClickListener(view -> {
+            product.setQuantityOfSelectedProduct(product.getQuantityOfSelectedProduct() + 1);
+            cartProductListener.addRemoveQuantityOfProduct(product);
+        });
+
+        cardView.findViewById(R.id.decrease_button).setOnClickListener(view -> {
+            int selectedProductsQuantity = product.getQuantityOfSelectedProduct();
+            selectedProductsQuantity--;
+
+            if (selectedProductsQuantity <= 0) {
+               product.setSelected(false);
+            }
+
+            product.setQuantityOfSelectedProduct(selectedProductsQuantity);
+            cartProductListener.addRemoveQuantityOfProduct(product);
+        });
     }
 
     @Override
