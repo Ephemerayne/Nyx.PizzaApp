@@ -30,5 +30,6 @@
     <string name="button_add_product">Добавить к заказу</string>
     <string name="snackbar_add_product">Товар добавлен в корзину!</string>
     <string name="snackbar_remove_product">Товар удален из корзины!</string>
+    <string name="added_on_checked_product">Добавлено!</string>
 
 </resources>

@@ -92,14 +92,20 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
     private void setViewsForProducts(CardView cardView, int position) {
         final Resources resources = cardView.getResources();
-
+        final Product product = products.get(position);
         setProductImage(cardView, position);
 
         TextView title = cardView.findViewById(R.id.title);
         TextView priceTextView = cardView.findViewById(R.id.price);
-        title.setText(products.get(position).getTitle());
-        final double price = products.get(position).getPrice();
+        title.setText(product.getTitle());
+        final double price = product.getPrice();
         priceTextView.setText(resources.getString(R.string.prices, PriceFormatter.format(price)));
+        View checkedView = cardView.findViewById(R.id.checked_view);
+        if (product.isSelected()) {
+            checkedView.setVisibility(View.VISIBLE);
+        } else {
+            checkedView.setVisibility(View.GONE);
+        }
     }
 
     private void setProductImage(CardView cardView, int position) {
@@ -124,7 +130,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                     });
         }
 
-       imageView.setContentDescription(products.get(position).getTitle());
+        imageView.setContentDescription(products.get(position).getTitle());
     }
 
     @Override
