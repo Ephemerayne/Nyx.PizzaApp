@@ -1,4 +1,4 @@
-package space.lala.nyxpizzaapp.ui.fragmentpastas;
+package space.lala.nyxpizzaapp.ui.fragmentpizzas;
 
 import android.app.Application;
 
@@ -12,16 +12,16 @@ import io.reactivex.rxjava3.core.Single;
 import space.lala.nyxpizzaapp.datasource.repository.ProductsRepository;
 import space.lala.nyxpizzaapp.model.Product;
 
-public class PastaFragmentViewModel extends AndroidViewModel {
+public class ProductFragmentViewModel extends AndroidViewModel {
     private ProductsRepository repository;
 
-    public PastaFragmentViewModel(@NonNull Application application) {
+    public ProductFragmentViewModel(@NonNull Application application) {
         super(application);
         repository = new ProductsRepository(application);
     }
 
-    public LiveData<List<Product>> getPastas() {
-        return repository.getAllProducts(Product.Type.Pasta);
+    public LiveData<List<Product>> getProducts(Product.Type type) {
+        return repository.getAllProducts(type);
     }
 
     public Single<Product> getProductSingle(int id) {

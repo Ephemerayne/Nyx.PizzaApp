@@ -13,11 +13,10 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import space.lala.nyxpizzaapp.R;
+import space.lala.nyxpizzaapp.model.Product;
 import space.lala.nyxpizzaapp.ui.BaseActivity;
-import space.lala.nyxpizzaapp.ui.fragmentdrinks.DrinkFragment;
 import space.lala.nyxpizzaapp.ui.fragmentmain.MainFragment;
-import space.lala.nyxpizzaapp.ui.fragmentpastas.PastaFragment;
-import space.lala.nyxpizzaapp.ui.fragmentpizzas.PizzaFragment;
+import space.lala.nyxpizzaapp.ui.fragmentpizzas.ProductFragment;
 
 
 public class MainActivity extends BaseActivity {
@@ -67,11 +66,11 @@ public class MainActivity extends BaseActivity {
                 case 0:
                     return new MainFragment();
                 case 1:
-                    return new PizzaFragment();
+                    return ProductFragment.newInstance(Product.Type.Pizza.ordinal());
                 case 2:
-                    return new PastaFragment();
+                    return ProductFragment.newInstance(Product.Type.Pasta.ordinal());
                 case 3:
-                    return new DrinkFragment();
+                    return ProductFragment.newInstance(Product.Type.Drinks.ordinal());
             }
             return null;
         }

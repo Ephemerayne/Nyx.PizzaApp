@@ -1,4 +1,4 @@
-package space.lala.nyxpizzaapp.ui.fragmentdrinks;
+package space.lala.nyxpizzaapp.ui.fragmentpizzas;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,24 +21,39 @@ import space.lala.nyxpizzaapp.model.Product;
 import space.lala.nyxpizzaapp.ui.ProductsAdapter;
 import space.lala.nyxpizzaapp.ui.activitydetailproducts.ProductDetailActivity;
 
-public class DrinkFragment extends Fragment implements ProductCheckBoxListener {
+public class ProductFragment extends Fragment implements ProductCheckBoxListener {
 
-    ProductsAdapter adapter;
-    private DrinkFragmentViewModel viewModel;
+    private ProductsAdapter adapter;
+    private ProductFragmentViewModel viewModel;
+    private static final String TYPE = "type";
+    private Product.Type type;
+
+    public static ProductFragment newInstance(int ordinal) {
+        ProductFragment productFragment = new ProductFragment();
+        Bundle args = new Bundle();
+        args.putInt(TYPE, ordinal);
+        productFragment.setArguments(args);
+        return productFragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_drinks, container, false);
-        RecyclerView drinkRecycler = view.findViewById(R.id.drink_recycler);
+        View view = inflater.inflate(R.layout.fragment_product, container, false);
+        RecyclerView productRecycler = view.findViewById(R.id.product_recycler);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
-        drinkRecycler.setLayoutManager(layoutManager);
+        productRecycler.setLayoutManager(layoutManager);
         adapter = new ProductsAdapter(this::selectProduct);
+        productRecycler.setAdapter(adapter);
 
-        drinkRecycler.setAdapter(adapter);
-        viewModel = ViewModelProviders.of(this).get(DrinkFragmentViewModel.class);
-        viewModel.getDrinks()
-                .observe(this, drinks -> adapter.setProducts(drinks));
+        if (getArguments() != null) {
+            int ordinal = getArguments().getInt(TYPE, -1);
+            type = Product.Type.values()[ordinal];
+        }
+
+        viewModel = ViewModelProviders.of(this).get(ProductFragmentViewModel.class);
+        viewModel.getProducts(type)
+                .observe(this, products -> adapter.setProducts(products));
 
         adapter.setListener(new ProductsAdapter.Listener() {
             public void onClick(int id) {
@@ -47,7 +62,7 @@ public class DrinkFragment extends Fragment implements ProductCheckBoxListener {
                 getActivity().startActivity(intent);
             }
         });
-        return drinkRecycler;
+        return productRecycler;
     }
 
     @Override
@@ -65,6 +80,7 @@ public class DrinkFragment extends Fragment implements ProductCheckBoxListener {
                         } else {
                             product.setQuantityOfSelectedProduct(0);
                         }
+
                         viewModel.update(product);
                     }
 
