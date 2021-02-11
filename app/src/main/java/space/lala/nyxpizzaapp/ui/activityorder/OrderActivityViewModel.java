@@ -28,4 +28,10 @@ public class OrderActivityViewModel extends AndroidViewModel {
     public void update(Product product) {
         repository.update(product);
     }
+
+    public double sumSelectedProductsPrices(List<Product> cartProducts) {
+        return cartProducts.stream()
+                .mapToDouble(product -> product.getPrice() * product.getQuantityOfSelectedProduct())
+                .sum();
+    }
 }

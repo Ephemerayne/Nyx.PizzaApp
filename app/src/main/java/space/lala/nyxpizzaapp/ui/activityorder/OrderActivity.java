@@ -17,6 +17,7 @@ import space.lala.nyxpizzaapp.CartProductListener;
 import space.lala.nyxpizzaapp.CartProductsAdapter;
 import space.lala.nyxpizzaapp.R;
 import space.lala.nyxpizzaapp.model.Product;
+import space.lala.nyxpizzaapp.utils.PriceFormatter;
 
 
 public class OrderActivity extends AppCompatActivity implements CartProductListener {
@@ -27,6 +28,7 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
     private EditText phone;
     private EditText details;
     private TextView cartSum;
+    private Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,8 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
         viewModel = ViewModelProviders.of(this).get(OrderActivityViewModel.class);
         viewModel.getSelectedProducts().observe(this, cartProducts -> {
             adapter.setSelectedProducts(cartProducts);
+            cartSum.setText(getResources().getString(
+                    R.string.sum, PriceFormatter.format(viewModel.sumSelectedProductsPrices(cartProducts))));
         });
     }
 
@@ -61,7 +65,6 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
     public void addRemoveQuantityOfProduct(Product product) {
         viewModel.update(product);
     }
-
 
 //    public void onClickDone(View view) {
 //        CharSequence text = "Ваш заказ был отправлен!";
@@ -77,4 +80,5 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
 //                });
 //        snackbar.show();
 }
+
 
