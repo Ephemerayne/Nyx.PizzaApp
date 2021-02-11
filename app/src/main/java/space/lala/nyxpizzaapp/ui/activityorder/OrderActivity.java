@@ -1,5 +1,6 @@
 package space.lala.nyxpizzaapp.ui.activityorder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.inputmethod.EditorInfo;
@@ -17,6 +18,7 @@ import space.lala.nyxpizzaapp.CartProductListener;
 import space.lala.nyxpizzaapp.CartProductsAdapter;
 import space.lala.nyxpizzaapp.R;
 import space.lala.nyxpizzaapp.model.Product;
+import space.lala.nyxpizzaapp.ui.activitydetailproducts.ProductDetailActivity;
 import space.lala.nyxpizzaapp.utils.PriceFormatter;
 
 
@@ -50,7 +52,7 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
         RecyclerView cartProductsRecycler = findViewById(R.id.cart_products_recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         cartProductsRecycler.setLayoutManager(layoutManager);
-        adapter = new CartProductsAdapter(this::addRemoveQuantityOfProduct);
+        adapter = new CartProductsAdapter(this);
         cartProductsRecycler.setAdapter(adapter);
 
         viewModel = ViewModelProviders.of(this).get(OrderActivityViewModel.class);
@@ -62,8 +64,15 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
     }
 
     @Override
-    public void addRemoveQuantityOfProduct(Product product) {
+    public void onAddRemoveButtonsClick(Product product) {
         viewModel.update(product);
+    }
+
+    @Override
+    public void onCartProductClick(Product product) {
+        Intent intent = new Intent(this, ProductDetailActivity.class);
+        intent.putExtra(ProductDetailActivity.EXTRA_PRODUCT_ID, product.getId());
+        startActivity(intent);
     }
 
 //    public void onClickDone(View view) {

@@ -3,7 +3,6 @@ package space.lala.nyxpizzaapp;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,18 +44,20 @@ public class CartProductsAdapter extends RecyclerView.Adapter<CartProductsAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CardView cardView = holder.cardView;
         final Product product = cartProducts.get(position);
-        Button decreaseButton = cardView.findViewById(R.id.decrease_button);
         TextView quantityProduct = cardView.findViewById(R.id.quantity_product);
         quantityProduct.setText(String.valueOf(product.getQuantityOfSelectedProduct()));
 
         setViewsForSelectedProducts(cardView, position);
         initCartButtons(cardView, product);
+
+        quantityProduct.setOnClickListener(view -> {});
+        cardView.setOnClickListener(view -> cartProductListener.onCartProductClick(product));
     }
 
     private void initCartButtons(CardView cardView, Product product) {
         cardView.findViewById(R.id.increase_button).setOnClickListener(view -> {
             product.setQuantityOfSelectedProduct(product.getQuantityOfSelectedProduct() + 1);
-            cartProductListener.addRemoveQuantityOfProduct(product);
+            cartProductListener.onAddRemoveButtonsClick(product);
         });
 
         cardView.findViewById(R.id.decrease_button).setOnClickListener(view -> {
@@ -68,7 +69,7 @@ public class CartProductsAdapter extends RecyclerView.Adapter<CartProductsAdapte
             }
 
             product.setQuantityOfSelectedProduct(selectedProductsQuantity);
-            cartProductListener.addRemoveQuantityOfProduct(product);
+            cartProductListener.onAddRemoveButtonsClick(product);
         });
     }
 
