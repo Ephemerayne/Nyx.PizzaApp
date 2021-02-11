@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import io.reactivex.rxjava3.core.Single;
 import space.lala.nyxpizzaapp.datasource.repository.ProductsRepository;
 import space.lala.nyxpizzaapp.model.Product;
 
@@ -24,10 +23,6 @@ public class OrderActivityViewModel extends AndroidViewModel {
 
     public LiveData<List<Product>> getSelectedProducts() {
         return repository.getSelectedProducts();
-    }
-
-    public Single<Product> getProductSingle(int id) {
-        return repository.getProductSingle(id);
     }
 
     public void update(Product product) {

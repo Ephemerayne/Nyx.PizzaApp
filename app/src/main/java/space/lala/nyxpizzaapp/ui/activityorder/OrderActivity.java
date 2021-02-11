@@ -1,6 +1,10 @@
 package space.lala.nyxpizzaapp.ui.activityorder;
 
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +21,12 @@ import space.lala.nyxpizzaapp.model.Product;
 
 public class OrderActivity extends AppCompatActivity implements CartProductListener {
 
-    CartProductsAdapter adapter;
+    private CartProductsAdapter adapter;
     private OrderActivityViewModel viewModel;
+    private EditText name;
+    private EditText phone;
+    private EditText details;
+    private TextView cartSum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,14 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        name = findViewById(R.id.edit_name);
+        phone = findViewById(R.id.edit_phone);
+        details = findViewById(R.id.edit_details);
+        cartSum = findViewById(R.id.cart_product_sum);
+
+        details.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        details.setRawInputType(InputType.TYPE_CLASS_TEXT);
 
         RecyclerView cartProductsRecycler = findViewById(R.id.cart_products_recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -60,5 +76,5 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
 //                    }
 //                });
 //        snackbar.show();
-    }
+}
 

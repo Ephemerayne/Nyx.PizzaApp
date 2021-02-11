@@ -46,13 +46,24 @@
             android:padding = "16dp">
 
             <EditText
+                android:id="@+id/edit_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPersonName"
                 android:hint="@string/order_name_hint" />
 
             <EditText
+                android:id="@+id/edit_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:hint="@string/order_phone_hint" />
+
+            <EditText
+                android:id="@+id/edit_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
                 android:hint="@string/order_details_hint" />
 
 
