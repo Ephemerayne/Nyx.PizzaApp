@@ -99,6 +99,7 @@ public class ProductDetailActivity extends BaseActivity {
                     public void onSuccess(@NonNull Product product) {
                         transferProduct = product;
                         setAddProductButton(transferProduct);
+                        product.setQuantityOfSelectedProduct(1);
                     }
 
                     @Override

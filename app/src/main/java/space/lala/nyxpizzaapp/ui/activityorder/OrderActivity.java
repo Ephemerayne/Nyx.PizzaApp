@@ -3,6 +3,7 @@ package space.lala.nyxpizzaapp.ui.activityorder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,7 +31,8 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
     private EditText phone;
     private EditText details;
     private TextView cartSum;
-    private Product product;
+    private TextView cartQuantity;
+    private TextView noSelectedProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,8 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
         phone = findViewById(R.id.edit_phone);
         details = findViewById(R.id.edit_details);
         cartSum = findViewById(R.id.cart_product_sum);
+        cartQuantity = findViewById(R.id.cart_product_quantity);
+        noSelectedProducts = findViewById(R.id.text_no_selected_products);
 
         details.setImeOptions(EditorInfo.IME_ACTION_DONE);
         details.setRawInputType(InputType.TYPE_CLASS_TEXT);
@@ -58,8 +62,25 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
         viewModel = ViewModelProviders.of(this).get(OrderActivityViewModel.class);
         viewModel.getSelectedProducts().observe(this, cartProducts -> {
             adapter.setSelectedProducts(cartProducts);
-            cartSum.setText(getResources().getString(
-                    R.string.sum, PriceFormatter.format(viewModel.sumSelectedProductsPrices(cartProducts))));
+
+            if (adapter.getItemCount() != 0) {
+                noSelectedProducts.setVisibility(View.GONE);
+            } else {
+                noSelectedProducts.setVisibility(View.VISIBLE);
+            }
+
+            cartSum.setText(
+                    getString(
+                            R.string.sum,
+                            PriceFormatter.format(viewModel.sumSelectedProductsPrices(cartProducts))
+                    )
+            );
+            cartQuantity.setText(
+                    getString(
+                            R.string.quantity_products,
+                            viewModel.quantityOfSelectedProducts(cartProducts)
+                    )
+            );
         });
     }
 

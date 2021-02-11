@@ -34,4 +34,9 @@ public class OrderActivityViewModel extends AndroidViewModel {
                 .mapToDouble(product -> product.getPrice() * product.getQuantityOfSelectedProduct())
                 .sum();
     }
+
+    public int quantityOfSelectedProducts (List<Product> cartProducts) {
+        return cartProducts.stream()
+                .mapToInt(Product::getQuantityOfSelectedProduct).sum();
+    }
 }

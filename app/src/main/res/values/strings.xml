@@ -25,12 +25,14 @@
     <string name="add_order">Добавить к заказу</string>
     <string name="user_add_products">Выбранные товары</string>
     <string name="select_products">Выбранные товары:</string>
-    <string name="sum">Итого: %s ₽</string>
+    <string name="sum">Сумма заказа: %s ₽</string>
     <string name="button_remove_product">Убрать из заказа</string>
     <string name="button_add_product">Добавить к заказу</string>
     <string name="snackbar_add_product">Товар добавлен в корзину!</string>
     <string name="snackbar_remove_product">Товар удален из корзины!</string>
     <string name="added_on_checked_product">Добавлено!</string>
     <string name="order_phone_hint">Номер телефона</string>
+    <string name="quantity_products">Количество товаров: %d шт.</string>
+    <string name="Text_no_selected_products">Отсутствуют</string>
 
 </resources>
