@@ -35,7 +35,7 @@ public class OrderActivityViewModel extends AndroidViewModel {
                 .sum();
     }
 
-    public int quantityOfSelectedProducts (List<Product> cartProducts) {
+    public int quantityOfSelectedProducts(List<Product> cartProducts) {
         return cartProducts.stream()
                 .mapToInt(Product::getQuantityOfSelectedProduct).sum();
     }

@@ -16,6 +16,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 import space.lala.nyxpizzaapp.CartProductListener;
 import space.lala.nyxpizzaapp.CartProductsAdapter;
 import space.lala.nyxpizzaapp.R;
@@ -53,7 +55,6 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
         noSelectedProducts = findViewById(R.id.text_no_selected_products);
         clearCartButton = findViewById(R.id.clear_cart);
 
-        clearCartButton.setOnClickListener(view -> clearCart());
 
         details.setImeOptions(EditorInfo.IME_ACTION_DONE);
         details.setRawInputType(InputType.TYPE_CLASS_TEXT);
@@ -67,6 +68,7 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
         viewModel = ViewModelProviders.of(this).get(OrderActivityViewModel.class);
         viewModel.getSelectedProducts().observe(this, cartProducts -> {
             adapter.setSelectedProducts(cartProducts);
+            clearCartButton.setOnClickListener(view -> clearCart(cartProducts));
 
             if (adapter.getItemCount() != 0) {
                 noSelectedProducts.setVisibility(View.GONE);
@@ -91,8 +93,11 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
         });
     }
 
-    private void clearCart() {
-
+    private void clearCart(List<Product> cartProducts) {
+        for (Product product : cartProducts) {
+            product.setSelected(false);
+            viewModel.update(product);
+        }
     }
 
     @Override
