@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +36,7 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
     private EditText details;
     private TextView cartSum;
     private TextView cartQuantity;
+    private CardView cardViewNoSelectedProducts;
     private TextView noSelectedProducts;
     private Button clearCartButton;
 
@@ -52,6 +54,7 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
         details = findViewById(R.id.edit_details);
         cartSum = findViewById(R.id.cart_product_sum);
         cartQuantity = findViewById(R.id.cart_product_quantity);
+        cardViewNoSelectedProducts = findViewById(R.id.card_view_no_selected);
         noSelectedProducts = findViewById(R.id.text_no_selected_products);
         clearCartButton = findViewById(R.id.clear_cart);
 
@@ -71,9 +74,11 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
             clearCartButton.setOnClickListener(view -> clearCart(cartProducts));
 
             if (adapter.getItemCount() != 0) {
+                cardViewNoSelectedProducts.setVisibility(View.GONE);
                 noSelectedProducts.setVisibility(View.GONE);
                 clearCartButton.setVisibility(View.VISIBLE);
             } else {
+                cardViewNoSelectedProducts.setVisibility(View.VISIBLE);
                 noSelectedProducts.setVisibility(View.VISIBLE);
                 clearCartButton.setVisibility(View.INVISIBLE);
             }

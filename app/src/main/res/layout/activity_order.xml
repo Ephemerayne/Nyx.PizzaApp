@@ -75,9 +75,9 @@
                     android:id="@+id/text_selected_products"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:layout_marginStart="2dp"
                     android:text="@string/select_products"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -87,21 +87,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_weight="1"
-                    android:text="@string/clear_cart"
-                    android:layout_marginEnd="2dp" />
+                    android:text="@string/clear_cart" />
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/text_no_selected_products"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_no_selected"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:gravity="center"
-                android:text="@string/Text_no_selected_products"
-                android:textSize="16sp"
-                android:visibility="gone" />
+                android:layout_margin="2dp"
+                android:visibility="gone"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp">
+
+                <TextView
+                    android:id="@+id/text_no_selected_products"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:gravity="center"
+                    android:text="@string/Text_no_selected_products"
+                    android:textSize="16sp"
+                    android:visibility="gone" />
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cart_products_recycler"
