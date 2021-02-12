@@ -29,6 +29,9 @@
         <activity
             android:name=".ui.activitydetailproducts.ProductDetailActivity"
             android:parentActivityName=".ui.activitymain.MainActivity" />
+        <activity
+            android:name=".ui.activitylogin.LoginActivity"
+            android:parentActivityName=".ui.activitymain.MainActivity" />
     </application>
 
 </manifest>

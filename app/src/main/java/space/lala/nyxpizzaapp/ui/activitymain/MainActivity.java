@@ -1,6 +1,10 @@
 package space.lala.nyxpizzaapp.ui.activitymain;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -13,12 +17,12 @@ import com.google.android.material.navigation.NavigationView;
 
 import space.lala.nyxpizzaapp.R;
 import space.lala.nyxpizzaapp.ui.BaseActivity;
-
-
+import space.lala.nyxpizzaapp.ui.activitylogin.LoginActivity;
 
 public class MainActivity extends BaseActivity {
 
     private AppBarConfiguration appBarConfiguration;
+    private Button enterAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,15 @@ public class MainActivity extends BaseActivity {
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        enterAccount = ((LinearLayout) navigationView.getHeaderView(0)).findViewById(R.id.enter_account_button);
+
+        enterAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_products_menu, R.id.nav_contacts)

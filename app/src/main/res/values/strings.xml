@@ -1,16 +1,15 @@
 <resources>
     <string name="app_name">Nyx.PizzaApp</string>
 
-    <string name="create_order">Сделать заказ</string>
-    <string name="create_order_title">Сделать заказ</string>
-    <string name="action_share">Поделиться</string>
 
+
+    //TABLAYOUT TOOLBAR//
     <string name="pizza_tab">Пиццы</string>
     <string name="pasta_tab">Пасты</string>
     <string name="drinks_tab">Напитки</string>
 
-    <string name="menu_products">Меню</string>
-    <string name="home">Главная</string>
+
+
 
     <string name="company_name">Пиццы и Пасты</string>
     <string name="restaurant_image">Картинка ресторана</string>
@@ -19,6 +18,8 @@
         people believe eating out is about being with your friends and family. We believe that
         good food is best enjoyed while staring at your phone.</string>
 
+    //ORDER ACTIVITY//
+    <string name="create_order">Сделать заказ</string>
     <string name="order_name_hint">Ввведите Ваше имя</string>
     <string name="order_details_hint">Комментарии к заказу</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -36,9 +37,14 @@
     <string name="order_phone_hint">Номер телефона</string>
     <string name="quantity_products">Количество товаров: %d шт.</string>
     <string name="Text_no_selected_products">Отсутствуют</string>
+
+    //NAV MENU DRAWER//
     <string name="contacts">Контакты</string>
     <string name="history">История заказов</string>
+    <string name="home">Главная</string>
+    <string name="menu_products">Меню</string>
 
+    //CONTACTS FRAGMENT//
     <string name="your_city">Ваш город</string>
     <string name="call">Телефон для заказов и справки: </string>
     <string name="mail">Напишите нам на почту по любым вопросам: </string>
@@ -63,5 +69,11 @@
         <item>Новосибирск</item>
         <item>Сочи</item>
     </string-array>
+
+    //LOGIN ACTIVITY//
+    <string name="prompt_number_phone">Номер телефона</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="action_sign_in">Войти</string>
+    <string name="registration_text"><u>Зарегистрироваться</u></string>
 
 </resources>

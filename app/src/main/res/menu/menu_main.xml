@@ -6,6 +6,6 @@
         app:actionLayout="@layout/badge_cart"
         android:icon="@drawable/ic_shopping_basket_24"
         android:orderInCategory="1"
-        android:title="@string/create_order_title"
+        android:title="@string/create_order"
         app:showAsAction="ifRoom" />
 </menu>
