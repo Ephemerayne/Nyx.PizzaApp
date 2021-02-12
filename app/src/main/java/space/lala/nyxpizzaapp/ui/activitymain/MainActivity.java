@@ -2,24 +2,23 @@ package space.lala.nyxpizzaapp.ui.activitymain;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.android.material.navigation.NavigationView;
 
 import space.lala.nyxpizzaapp.R;
-import space.lala.nyxpizzaapp.model.Product;
 import space.lala.nyxpizzaapp.ui.BaseActivity;
-import space.lala.nyxpizzaapp.ui.fragmentmain.MainFragment;
-import space.lala.nyxpizzaapp.ui.fragmentpizzas.ProductFragment;
+
 
 
 public class MainActivity extends BaseActivity {
+
+    private AppBarConfiguration appBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,56 +27,22 @@ public class MainActivity extends BaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SectionsPagerAdapter pagerAdapter = new SectionsPagerAdapter(this);
-        ViewPager2 pager = findViewById(R.id.pager);
-        pager.setAdapter(pagerAdapter);
-        TabLayout tabLayout = findViewById(R.id.tabs);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
 
-        new TabLayoutMediator(tabLayout, pager,
-                (tab, position) -> {
-                    switch (position) {
-                        case 0:
-                            tab.setText(R.string.home_tab);
-                            break;
-                        case 1:
-                            tab.setText(R.string.pizza_tab);
-                            break;
-                        case 2:
-                            tab.setText(R.string.pasta_tab);
-                            break;
-                        case 3:
-                            tab.setText(R.string.drinks_tab);
-                            break;
-                    }
-                }
-        ).attach();
+        appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                .setDrawerLayout(drawer)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    private class SectionsPagerAdapter extends FragmentStateAdapter {
-
-        public SectionsPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
-            super(fragmentActivity);
-        }
-
-        @NonNull
-        @Override
-        public Fragment createFragment(int position) {
-            switch (position) {
-                case 0:
-                    return new MainFragment();
-                case 1:
-                    return ProductFragment.newInstance(Product.Type.Pizza.ordinal());
-                case 2:
-                    return ProductFragment.newInstance(Product.Type.Pasta.ordinal());
-                case 3:
-                    return ProductFragment.newInstance(Product.Type.Drinks.ordinal());
-            }
-            return null;
-        }
-
-        @Override
-        public int getItemCount() {
-            return 4;
-        }
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 }
