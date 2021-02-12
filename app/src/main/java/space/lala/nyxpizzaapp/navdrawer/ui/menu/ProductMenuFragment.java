@@ -1,4 +1,4 @@
-package space.lala.nyxpizzaapp.testnavdrawer.ui.home;
+package space.lala.nyxpizzaapp.navdrawer.ui.menu;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,44 +17,40 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import space.lala.nyxpizzaapp.R;
 import space.lala.nyxpizzaapp.model.Product;
-import space.lala.nyxpizzaapp.ui.fragmentmain.MainFragment;
-import space.lala.nyxpizzaapp.ui.fragmentpizzas.ProductFragment;
+import space.lala.nyxpizzaapp.ui.fragmentproducts.ProductFragment;
 
 
-public class HomeFragment extends Fragment {
+public class ProductMenuFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private ProductMenuFragmentViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        viewModel =
+                new ViewModelProvider(this).get(ProductMenuFragmentViewModel.class);
+        View view = inflater.inflate(R.layout.fragment_product_menu, container, false);
 
         SectionsPagerAdapter pagerAdapter = new SectionsPagerAdapter(getActivity());
-        ViewPager2 pager = root.findViewById(R.id.pager);
+        ViewPager2 pager = view.findViewById(R.id.pager);
         pager.setAdapter(pagerAdapter);
-        TabLayout tabLayout = root.findViewById(R.id.tabs);
+        TabLayout tabLayout = view.findViewById(R.id.tabs);
 
         new TabLayoutMediator(tabLayout, pager,
                 (tab, position) -> {
                     switch (position) {
                         case 0:
-                            tab.setText(R.string.home_tab);
-                            break;
-                        case 1:
                             tab.setText(R.string.pizza_tab);
                             break;
-                        case 2:
+                        case 1:
                             tab.setText(R.string.pasta_tab);
                             break;
-                        case 3:
+                        case 2:
                             tab.setText(R.string.drinks_tab);
                             break;
                     }
                 }
         ).attach();
-        return root;
+        return view;
     }
 
     private class SectionsPagerAdapter extends FragmentStateAdapter {
@@ -68,12 +64,10 @@ public class HomeFragment extends Fragment {
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
-                    return new MainFragment();
-                case 1:
                     return ProductFragment.newInstance(Product.Type.Pizza.ordinal());
-                case 2:
+                case 1:
                     return ProductFragment.newInstance(Product.Type.Pasta.ordinal());
-                case 3:
+                case 2:
                     return ProductFragment.newInstance(Product.Type.Drinks.ordinal());
             }
             return null;
@@ -81,7 +75,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return 4;
+            return 3;
         }
     }
 }

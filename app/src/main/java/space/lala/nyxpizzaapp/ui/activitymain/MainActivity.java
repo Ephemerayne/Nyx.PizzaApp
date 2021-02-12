@@ -31,7 +31,7 @@ public class MainActivity extends BaseActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_products_menu, R.id.nav_contacts)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

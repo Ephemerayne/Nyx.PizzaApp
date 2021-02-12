@@ -1,16 +1,16 @@
-package space.lala.nyxpizzaapp.testnavdrawer.ui.home;
+package space.lala.nyxpizzaapp.navdrawer.ui.menu;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class ProductMenuFragmentViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public ProductMenuFragmentViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is gallery fragment");
     }
 
     public LiveData<String> getText() {

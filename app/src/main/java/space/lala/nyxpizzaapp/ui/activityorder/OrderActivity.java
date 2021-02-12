@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -33,6 +34,7 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
     private TextView cartSum;
     private TextView cartQuantity;
     private TextView noSelectedProducts;
+    private Button clearCartButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,9 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
         cartSum = findViewById(R.id.cart_product_sum);
         cartQuantity = findViewById(R.id.cart_product_quantity);
         noSelectedProducts = findViewById(R.id.text_no_selected_products);
+        clearCartButton = findViewById(R.id.clear_cart);
+
+        clearCartButton.setOnClickListener(view -> clearCart());
 
         details.setImeOptions(EditorInfo.IME_ACTION_DONE);
         details.setRawInputType(InputType.TYPE_CLASS_TEXT);
@@ -65,8 +70,10 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
 
             if (adapter.getItemCount() != 0) {
                 noSelectedProducts.setVisibility(View.GONE);
+                clearCartButton.setVisibility(View.VISIBLE);
             } else {
                 noSelectedProducts.setVisibility(View.VISIBLE);
+                clearCartButton.setVisibility(View.INVISIBLE);
             }
 
             cartSum.setText(
@@ -82,6 +89,10 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
                     )
             );
         });
+    }
+
+    private void clearCart() {
+
     }
 
     @Override

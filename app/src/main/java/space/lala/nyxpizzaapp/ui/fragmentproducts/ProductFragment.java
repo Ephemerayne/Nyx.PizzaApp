@@ -1,4 +1,4 @@
-package space.lala.nyxpizzaapp.ui.fragmentpizzas;
+package space.lala.nyxpizzaapp.ui.fragmentproducts;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -52,8 +52,11 @@ public class ProductFragment extends Fragment implements ProductCheckBoxListener
         }
 
         viewModel = ViewModelProviders.of(this).get(ProductFragmentViewModel.class);
+
+//        if (type == null) type = Product.Type.Pizza;
+
         viewModel.getProducts(type)
-                .observe(this, products -> adapter.setProducts(products));
+                .observe(getViewLifecycleOwner(), products -> adapter.setProducts(products));
 
         adapter.setListener(new ProductsAdapter.Listener() {
             public void onClick(int id) {

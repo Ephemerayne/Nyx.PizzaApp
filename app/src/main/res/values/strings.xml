@@ -5,10 +5,12 @@
     <string name="create_order_title">Сделать заказ</string>
     <string name="action_share">Поделиться</string>
 
-    <string name="home_tab">Главная</string>
     <string name="pizza_tab">Пиццы</string>
     <string name="pasta_tab">Пасты</string>
     <string name="drinks_tab">Напитки</string>
+
+    <string name="menu_products">Меню</string>
+    <string name="home">Главная</string>
 
     <string name="company_name">Пиццы и Пасты</string>
     <string name="restaurant_image">Картинка ресторана</string>
@@ -34,5 +36,32 @@
     <string name="order_phone_hint">Номер телефона</string>
     <string name="quantity_products">Количество товаров: %d шт.</string>
     <string name="Text_no_selected_products">Отсутствуют</string>
+    <string name="contacts">Контакты</string>
+    <string name="history">История заказов</string>
+
+    <string name="your_city">Ваш город</string>
+    <string name="call">Телефон для заказов и справки: </string>
+    <string name="mail">Напишите нам на почту по любым вопросам: </string>
+    <string name="info_legal_and_pay">Правовая информация</string>
+    <string name="legal_info">Правовая информация</string>
+    <string name="pay_info">Доставка и оплата</string>
+    <string name="social">Наши соцсети</string>
+    <string name="moscow_number">+ 7 (495) 555 55 55</string>
+    <string name="spb_number">+ 7 (812) 566 56 57</string>
+    <string name="kazan_number">+ 7 (843) 655 34 35</string>
+    <string name="novosibirsk_number">+ 7 (383) 455 54 35</string>
+    <string name="sochi_number">+ 7 (862) 567 76 56</string>
+    <string name="farmers_shop_ru">pizzazPastas@restaurant.ru</string>
+    <string name="cancel_dialog_sheet">Отменить</string>
+    <string name="send_mail">Написать письмо</string>
+    <string name="clear_cart">Очистить</string>
+
+    <string-array name="cities">
+        <item>Москва</item>
+        <item>Санкт-Петербург</item>
+        <item>Казань</item>
+        <item>Новосибирск</item>
+        <item>Сочи</item>
+    </string-array>
 
 </resources>

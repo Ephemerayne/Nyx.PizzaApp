@@ -1,4 +1,4 @@
-package space.lala.nyxpizzaapp.ui.fragmentpizzas;
+package space.lala.nyxpizzaapp.ui.fragmentproducts;
 
 import android.app.Application;
 
