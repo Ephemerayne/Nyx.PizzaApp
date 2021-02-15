@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_view_registration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registration"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/username_registration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/hint_name_registration"
+        android:inputType="textPersonName"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/user_phone_registration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="Введите номер в формате +7 или начиная с 8"
+        android:hint="@string/hint_phone_registration"
+        android:inputType="phone"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/user_password_registration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="Пароль должен содержать не менее 6 символов"
+        android:hint="@string/prompt_password"
+        android:inputType="textPassword"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/user_email_registration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="Пример example@mail.ru"
+        android:hint="@string/hint_email_registration"
+        android:inputType="textEmailAddress"
+        android:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/agreement_registration_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/agreement_personal_data_registration" />
+
+    <CheckBox
+        android:id="@+id/offers_and_promotions_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/offers_and_promotions" />
+
+    <Button
+        android:id="@+id/apply_registration_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/apply_registration" />
+</LinearLayout>

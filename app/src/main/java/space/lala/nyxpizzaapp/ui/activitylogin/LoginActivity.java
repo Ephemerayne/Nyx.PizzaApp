@@ -5,8 +5,10 @@ import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,11 +22,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText loginPhone;
     private EditText loginPassword;
     private Button loginButton;
+    private TextView registerClick;
     private TextWatcher plusSignTextWatcher = new PlusSignTextWatcher();
     private TextWatcher passwordTextWatcher = new PasswordTextWatcher();
-
-
-    private Pattern passwordPattern = Pattern.compile(PASSWORD_PATTERN);
 
 
     @Override
@@ -35,6 +35,14 @@ public class LoginActivity extends AppCompatActivity {
         loginPhone = findViewById(R.id.login_phone);
         loginPassword = findViewById(R.id.login_password);
         loginButton = findViewById(R.id.login_button);
+        registerClick = findViewById(R.id.text_registration);
+
+        registerClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         final PhoneNumberFormattingTextWatcher textWatcher =
                 new PhoneNumberFormattingTextWatcher("RU");
