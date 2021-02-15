@@ -1,6 +1,7 @@
 package space.lala.nyxpizzaapp.datasource.local.database;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -8,6 +9,7 @@ import androidx.room.Update;
 
 import space.lala.nyxpizzaapp.model.User;
 
+@Dao
 public interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
