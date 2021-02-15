@@ -6,20 +6,20 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import space.lala.nyxpizzaapp.model.Product;
+import space.lala.nyxpizzaapp.model.User;
 
-@Database(entities = {Product.class}, version = 1)
-public abstract class ProductsDatabase extends RoomDatabase {
+@Database(entities = {User.class}, version = 1)
+public abstract class UsersDatabase extends RoomDatabase {
 
-    private static ProductsDatabase instance;
+    private static UsersDatabase instance;
 
-    public abstract ProductDao productDao();
+    public abstract UserDao userDao();
 
-    public static synchronized ProductsDatabase getInstance(Context context) {
+    public static synchronized UsersDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(
                     context.getApplicationContext(),
-                    ProductsDatabase.class, "products_database")
+                    UsersDatabase.class, "users_database")
                     .fallbackToDestructiveMigration()
                     .build();
         }
