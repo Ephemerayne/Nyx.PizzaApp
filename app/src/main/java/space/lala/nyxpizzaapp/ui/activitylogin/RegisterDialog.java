@@ -19,6 +19,7 @@ import space.lala.nyxpizzaapp.utils.PhoneNumberTextWatcher;
 public class RegisterDialog extends DialogFragment implements OnFieldChangeListener {
     private RegisterDialogBinding binding;
     private LoginButtonSwitcher buttonSwitcher;
+    private boolean isAgreementAccepted = false;
 
     @Nullable
     @Override
@@ -40,19 +41,23 @@ public class RegisterDialog extends DialogFragment implements OnFieldChangeListe
                 new PasswordTextWatcher(this)
         );
 
-
         buttonSwitcher = new LoginButtonSwitcher(
                 binding.userPhoneRegistration,
                 binding.userPasswordRegistration,
                 binding.applyRegistrationButton
         );
 
+        binding.agreementRegistrationCheckbox.setOnClickListener(view -> {
+            isAgreementAccepted = binding.agreementRegistrationCheckbox.isChecked();
+            onFieldChange();
+        });
+
         return binding.getRoot();
     }
 
     @Override
     public void onFieldChange() {
-        buttonSwitcher.switchLoginButton();
+        buttonSwitcher.switchLoginButton(isAgreementAccepted);
     }
 }
 

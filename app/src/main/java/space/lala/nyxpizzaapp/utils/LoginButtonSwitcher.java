@@ -14,11 +14,19 @@ public class LoginButtonSwitcher {
         this.loginButton = loginButton;
     }
 
-    public void switchLoginButton() {
-        if (isPasswordInserted() && isPhoneNumberInserted()) {
-            loginButton.setEnabled(true);
-        } else {
-            loginButton.setEnabled(false);
+    public void switchLoginButton(Boolean... extraConditions) {
+        boolean conditions = true;
+
+        for (boolean condition : extraConditions) {
+            if (!condition) {
+                conditions = false;
+                break;
+            }
+        }
+
+        loginButton.setEnabled(isPasswordInserted() && isPhoneNumberInserted() && conditions);
+        if (isPasswordInserted()) {
+            isPhoneNumberInserted();
         }
     }
 
