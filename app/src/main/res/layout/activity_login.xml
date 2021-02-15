@@ -12,7 +12,7 @@
     tools:context=".ui.activitylogin.LoginActivity">
 
     <EditText
-        android:id="@+id/usernumber"
+        android:id="@+id/login_phone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -20,13 +20,14 @@
         android:layout_marginEnd="24dp"
         android:hint="@string/prompt_number_phone"
         android:inputType="phone"
+        android:maxLength="15"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/login_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -38,22 +39,23 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernumber" />
+        app:layout_constraintTop_toBottomOf="@+id/login_phone" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="48dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="48dp"
+        android:enabled="false"
         android:text="@string/action_sign_in"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/login_password" />
 
     <ImageView
         android:id="@+id/loading"
@@ -64,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:layout_constraintTop_toBottomOf="@+id/login_button"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
@@ -73,7 +75,7 @@
         android:layout_height="wrap_content"
         android:text="@string/registration_text"
         android:textColor="@color/purple_700"
-        app:layout_constraintBottom_toTopOf="@+id/usernumber"
+        app:layout_constraintBottom_toTopOf="@+id/login_phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.908"
         app:layout_constraintStart_toStartOf="parent"
