@@ -17,6 +17,7 @@ import space.lala.nyxpizzaapp.utils.PasswordTextWatcher;
 import space.lala.nyxpizzaapp.utils.PhoneNumberTextWatcher;
 
 public class LoginActivity extends AppCompatActivity implements OnFieldChangeListener {
+
     private EditText loginPhone;
     private EditText loginPassword;
     private Button loginButton;

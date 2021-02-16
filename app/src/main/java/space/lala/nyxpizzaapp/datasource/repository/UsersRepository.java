@@ -39,7 +39,7 @@ public class UsersRepository {
         return userDao.getUser(id);
     }
 
-    private void insertUser(User user) {
+    public void insertUser(User user) {
         new InsertUserAsyncTask(userDao).execute(user);
     }
 
