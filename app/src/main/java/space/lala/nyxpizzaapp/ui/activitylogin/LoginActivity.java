@@ -44,13 +44,12 @@ public class LoginActivity extends AppCompatActivity implements OnFieldChangeLis
         });
 
 
-        loginPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher("RU"));
+        loginPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher("US"));
         loginPhone.addTextChangedListener(
                 new PhoneNumberTextWatcher(loginPhone, this)
         );
         loginPassword.addTextChangedListener(new PasswordTextWatcher(this));
     }
-
 
     @Override
     public void onFieldChange() {

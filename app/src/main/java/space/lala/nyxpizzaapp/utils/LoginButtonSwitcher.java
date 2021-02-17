@@ -35,7 +35,7 @@ public class LoginButtonSwitcher {
     }
 
     private boolean isPhoneNumberInserted() {
-        return (loginPhone.getText().length() >= 16 && loginPhone.getText().charAt(0) == '+') ||
-                (loginPhone.getText().length() >= 15 && loginPhone.getText().charAt(0) != '+');
+        return (loginPhone.getText().length() >= 15 && loginPhone.getText().charAt(0) == '+') ||
+                (loginPhone.getText().length() >= 14 && loginPhone.getText().charAt(0) != '+');
     }
 }

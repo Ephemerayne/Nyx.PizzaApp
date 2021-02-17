@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "96997996170",
+    "project_id": "pizzaapp-18954",
+    "storage_bucket": "pizzaapp-18954.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96997996170:android:a686f11fde5ab4d9e65f73",
+        "android_client_info": {
+          "package_name": "space.lala.nyxpizzaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96997996170-i50h199doip83b4trgtncjv45k31url4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAerGVCMVGkmWEEJ8j6A7F_lMm9mazkO8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96997996170-i50h199doip83b4trgtncjv45k31url4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

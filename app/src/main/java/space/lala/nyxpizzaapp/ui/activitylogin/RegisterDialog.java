@@ -1,11 +1,11 @@
 package space.lala.nyxpizzaapp.ui.activitylogin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +23,7 @@ public class RegisterDialog extends DialogFragment implements OnFieldChangeListe
     private RegisterDialogBinding binding;
     private LoginButtonSwitcher buttonSwitcher;
     private boolean isAgreementAccepted = false;
+    private String phoneNum = "+1 650-555-1234";
 
     private RegisterDialogViewModel viewModel;
 
@@ -36,6 +37,8 @@ public class RegisterDialog extends DialogFragment implements OnFieldChangeListe
         binding = RegisterDialogBinding.inflate(inflater, container, false);
         viewModel = ViewModelProviders.of(this).get(RegisterDialogViewModel.class);
         binding.applyRegistrationButton.setOnClickListener(view -> dismiss());
+
+        binding.userPhoneRegistration.setText(phoneNum);
 
         binding.userPhoneRegistration.addTextChangedListener(
                 new PhoneNumberFormattingTextWatcher("RU")
@@ -59,13 +62,19 @@ public class RegisterDialog extends DialogFragment implements OnFieldChangeListe
         });
 
         binding.applyRegistrationButton.setOnClickListener(view -> {
-            registerUser();
-            dismiss();
-            Toast.makeText(
-                    getContext(),
-                    "Пользователь зарегистрирован",
-                    Toast.LENGTH_LONG
-            ).show();
+
+            //для БД Room
+//            registerUser();
+//            dismiss();
+//            Toast.makeText(
+//                    getContext(),
+//                    "Пользователь зарегистрирован",
+//                    Toast.LENGTH_LONG
+//            ).show();
+            String userPhoneNumber = binding.userPhoneRegistration.getText().toString().trim();
+           Intent intent = new Intent(getContext(), VerifyPhoneActivity.class);
+           intent.putExtra(VerifyPhoneActivity.USER_MOBILE, userPhoneNumber);
+           startActivity(intent);
         });
 
         return binding.getRoot();
