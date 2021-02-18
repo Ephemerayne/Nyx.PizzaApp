@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "96997996170-5vphbg29i1uvd8oe6rl10ssd4oohnikf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "space.lala.nyxpizzaapp",
+            "certificate_hash": "80e64168067ed5ad5c6c3cf676e2faad0dff4b11"
+          }
+        },
+        {
           "client_id": "96997996170-i50h199doip83b4trgtncjv45k31url4.apps.googleusercontent.com",
           "client_type": 3
         }

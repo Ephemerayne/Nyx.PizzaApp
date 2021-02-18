@@ -3,6 +3,7 @@ package space.lala.nyxpizzaapp.ui.activitylogin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,12 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
@@ -45,6 +46,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         signIn = findViewById(R.id.buttonSignIn);
 
         editTextCode.setText(testVerificationCode);
+        editTextCode.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
         Intent intent = getIntent();
         String userPhoneNumber = intent.getStringExtra(USER_MOBILE);
@@ -62,12 +64,13 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
 
     private void sendVerificationCode(String userPhoneNumber) {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                userPhoneNumber,
-                60,
-                TimeUnit.SECONDS,
-                this,
-                mCallbacks);
+        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
+                .setPhoneNumber(userPhoneNumber)       // Phone number to verify
+                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                .setActivity(this)                 // Activity (for callback binding)
+                .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
+                .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
     }
 
     //TODO вставка фейк пароля
@@ -109,28 +112,15 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                             Intent intent = new Intent(VerifyPhoneActivity.this, ProfileActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
-
                         } else {
-
-                            //verification unsuccessful.. display an error message
-
-                            String message = "Somthing is wrong, we will fix it soon...";
+                            Toast.makeText(VerifyPhoneActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
 
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                message = "Invalid code entered...";
+                                Toast.makeText(VerifyPhoneActivity.this, "Invalid code entered...", Toast.LENGTH_SHORT).show();
                             }
-
-                            Snackbar snackbar = Snackbar.make(findViewById(R.id.parent), message, Snackbar.LENGTH_LONG);
-                            snackbar.setAction("Dismiss", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                }
-                            });
-                            snackbar.show();
                         }
+
                     }
                 });
     }
 }
-
