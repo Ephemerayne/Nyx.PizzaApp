@@ -13,7 +13,6 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import space.lala.nyxpizzaapp.databinding.RegisterDialogBinding;
-import space.lala.nyxpizzaapp.model.User;
 import space.lala.nyxpizzaapp.utils.LoginButtonSwitcher;
 import space.lala.nyxpizzaapp.utils.OnFieldChangeListener;
 import space.lala.nyxpizzaapp.utils.PasswordTextWatcher;
@@ -72,6 +71,7 @@ public class RegisterDialog extends DialogFragment implements OnFieldChangeListe
 //                    Toast.LENGTH_LONG
 //            ).show();
             String userPhoneNumber = binding.userPhoneRegistration.getText().toString().trim();
+
            Intent intent = new Intent(getContext(), VerifyPhoneActivity.class);
            intent.putExtra(VerifyPhoneActivity.USER_MOBILE, userPhoneNumber);
            startActivity(intent);
@@ -85,20 +85,20 @@ public class RegisterDialog extends DialogFragment implements OnFieldChangeListe
         buttonSwitcher.switchLoginButton(isAgreementAccepted);
     }
 
-    private void registerUser() {
-        final String userName = binding.usernameRegistration.getText().toString();
-        final String userPhone = binding.userPhoneRegistration.getText().toString();
-        final String userPassword = binding.userPasswordRegistration.getText().toString();
-        final String userEmail = binding.userEmailRegistration.getText().toString();
-        final boolean isSubscribed = binding.offersAndPromotionsCheckbox.isChecked();
-        final User user = new User(
-                userName,
-                userPhone,
-                userPassword,
-                userEmail,
-                isSubscribed
-        );
-        viewModel.insertUser(user);
-    }
+//    private void registerUser() {
+//        final String userName = binding.usernameRegistration.getText().toString();
+//        final String userPhone = binding.userPhoneRegistration.getText().toString();
+//        final String userPassword = binding.userPasswordRegistration.getText().toString();
+//        final String userEmail = binding.userEmailRegistration.getText().toString();
+//        final boolean isSubscribed = binding.offersAndPromotionsCheckbox.isChecked();
+//        final User user = new User(
+//                userName,
+//                userPhone,
+//                userPassword,
+//                userEmail,
+//                isSubscribed
+//        );
+//        viewModel.insertUser(user);
+//    }
 }
 

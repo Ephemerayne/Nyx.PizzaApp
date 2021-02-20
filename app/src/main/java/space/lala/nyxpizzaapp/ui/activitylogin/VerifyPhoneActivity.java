@@ -24,7 +24,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import java.util.concurrent.TimeUnit;
 
 import space.lala.nyxpizzaapp.R;
-import space.lala.nyxpizzaapp.ui.activityprofile.ProfileActivity;
+import space.lala.nyxpizzaapp.ui.activityorder.OrderActivity;
 
 public class VerifyPhoneActivity extends AppCompatActivity {
     public static final String USER_MOBILE = "userPhoneNumber";
@@ -73,7 +73,6 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
 
-    //TODO вставка фейк пароля
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
@@ -108,15 +107,17 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //verification successful we will start the profile activity
-                            Intent intent = new Intent(VerifyPhoneActivity.this, ProfileActivity.class);
+
+                            Intent intent = new Intent(VerifyPhoneActivity.this, OrderActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
+
+                            Toast.makeText(VerifyPhoneActivity.this, "Успешная регистрация! Вход выполнен", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(VerifyPhoneActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VerifyPhoneActivity.this, "Ошибка!", Toast.LENGTH_SHORT).show();
 
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                Toast.makeText(VerifyPhoneActivity.this, "Invalid code entered...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(VerifyPhoneActivity.this, "Введен неверный код, введите снова", Toast.LENGTH_LONG).show();
                             }
                         }
 

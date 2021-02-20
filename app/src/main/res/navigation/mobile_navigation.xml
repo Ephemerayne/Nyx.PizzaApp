@@ -6,6 +6,12 @@
     app:startDestination="@+id/nav_home">
 
     <fragment
+        android:id="@+id/nav_profile"
+        android:name="space.lala.nyxpizzaapp.navdrawer.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
         android:id="@+id/nav_home"
         android:name="space.lala.nyxpizzaapp.navdrawer.ui.home.HomeFragment"
         android:label="@string/home"
@@ -15,12 +21,14 @@
         android:id="@+id/nav_products_menu"
         android:name="space.lala.nyxpizzaapp.navdrawer.ui.menu.ProductMenuFragment"
         android:label="@string/menu_products"
-        tools:layout="@layout/fragment_product_menu" >
-    </fragment>
+        tools:layout="@layout/fragment_product_menu" />
 
     <fragment
         android:id="@+id/nav_contacts"
         android:name="space.lala.nyxpizzaapp.navdrawer.ui.contacts.ContactsFragment"
         android:label="@string/contacts"
         tools:layout="@layout/fragment_contacts" />
+
+
+
 </navigation>

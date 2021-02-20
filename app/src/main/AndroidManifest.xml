@@ -33,7 +33,7 @@
             android:name=".ui.activitylogin.VerifyPhoneActivity"
             android:parentActivityName=".ui.activitymain.MainActivity" />
         <activity
-            android:name=".ui.activityprofile.ProfileActivity"
+            android:name=".navdrawer.ui.profile.ProfileFragment"
             android:parentActivityName=".ui.activitymain.MainActivity" />
         <activity
             android:name=".ui.activitylogin.LoginActivity"

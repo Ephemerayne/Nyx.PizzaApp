@@ -82,5 +82,7 @@
     <string name="agreement_personal_data_registration">Согласие на передачу персональных данных</string>
     <string name="offers_and_promotions">Подписаться на рассылку предложений и акций (по желанию)</string>
     <string name="apply_registration">Принять</string>
+    <string name="logout">Выйти</string>
+    <string name="profile">Профиль</string>
 
 </resources>
