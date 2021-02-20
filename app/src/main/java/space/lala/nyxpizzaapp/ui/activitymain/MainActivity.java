@@ -2,6 +2,7 @@ package space.lala.nyxpizzaapp.ui.activitymain;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -23,6 +24,8 @@ import space.lala.nyxpizzaapp.ui.BaseActivity;
 import space.lala.nyxpizzaapp.ui.activitylogin.LoginActivity;
 
 public class MainActivity extends BaseActivity {
+
+    public static final String PROFILE_FRAGMENT_INTENT = "PROFILE_FRAGMENT_INTENT";
 
     private AppBarConfiguration appBarConfiguration;
     private Button enterAccount;
@@ -46,6 +49,14 @@ public class MainActivity extends BaseActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         enterAccount = ((LinearLayout) navigationView.getHeaderView(0)).findViewById(R.id.enter_account_button);
 
+        Intent intent = getIntent();
+        String intentMessage = intent.getStringExtra(PROFILE_FRAGMENT_INTENT);
+        if (intentMessage != null) {
+            if (intentMessage.equals(PROFILE_FRAGMENT_INTENT)) {
+                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.toProfile);
+            }
+        }
+
         enterAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,7 +68,7 @@ public class MainActivity extends BaseActivity {
         initNavViews(navigationView);
         userSignIn();
 
-        appBarConfiguration = new AppBarConfiguration.Builder( R.id.nav_profile,
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_profile,
                 R.id.nav_home, R.id.nav_products_menu, R.id.nav_contacts)
                 .setOpenableLayout(drawer)
                 .build();
@@ -75,6 +86,7 @@ public class MainActivity extends BaseActivity {
 
     public void userSignIn() {
         if (auth.getCurrentUser() != null) {
+
             userInfoContainer.setVisibility(View.VISIBLE);
             enterAccount.setVisibility(View.GONE);
 
@@ -89,8 +101,11 @@ public class MainActivity extends BaseActivity {
             });
 
         } else {
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            Menu navMenu = navigationView.getMenu();
+            navMenu.findItem(R.id.nav_profile).setVisible(false);
+
             userInfoContainer.setVisibility(View.GONE);
-            enterAccount.setVisibility(View.VISIBLE);
         }
     }
 

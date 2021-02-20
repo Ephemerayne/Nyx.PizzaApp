@@ -24,7 +24,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import java.util.concurrent.TimeUnit;
 
 import space.lala.nyxpizzaapp.R;
-import space.lala.nyxpizzaapp.ui.activityorder.OrderActivity;
+import space.lala.nyxpizzaapp.ui.activitymain.MainActivity;
 
 public class VerifyPhoneActivity extends AppCompatActivity {
     public static final String USER_MOBILE = "userPhoneNumber";
@@ -108,8 +108,8 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            Intent intent = new Intent(VerifyPhoneActivity.this, OrderActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            Intent intent = new Intent(VerifyPhoneActivity.this, MainActivity.class);
+                            intent.putExtra(MainActivity.PROFILE_FRAGMENT_INTENT, MainActivity.PROFILE_FRAGMENT_INTENT);
                             startActivity(intent);
 
                             Toast.makeText(VerifyPhoneActivity.this, "Успешная регистрация! Вход выполнен", Toast.LENGTH_LONG).show();
