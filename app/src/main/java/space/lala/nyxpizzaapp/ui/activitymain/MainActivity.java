@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity {
 
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_products_menu, R.id.nav_contacts)
-                .setDrawerLayout(drawer)
+                .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);

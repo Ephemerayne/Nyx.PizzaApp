@@ -18,7 +18,7 @@
             android:title="@string/contacts" />
     </group>
     <group
-        android:id="@+id/message"
+        android:id="@+id/order_history"
         android:checkableBehavior="single">
         <item
             android:icon="@drawable/ic_baseline_history_24"
