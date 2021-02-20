@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity {
         userSignIn();
 
         appBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_profile,
-                R.id.nav_home, R.id.nav_products_menu, R.id.nav_contacts)
+                R.id.nav_home, R.id.nav_products_menu, R.id.nav_contacts, R.id.nav_order_history)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -104,6 +104,7 @@ public class MainActivity extends BaseActivity {
             NavigationView navigationView = findViewById(R.id.nav_view);
             Menu navMenu = navigationView.getMenu();
             navMenu.findItem(R.id.nav_profile).setVisible(false);
+            navMenu.findItem(R.id.nav_order_history).setVisible(false);
 
             userInfoContainer.setVisibility(View.GONE);
         }

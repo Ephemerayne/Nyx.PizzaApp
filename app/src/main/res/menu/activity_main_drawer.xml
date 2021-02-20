@@ -21,10 +21,11 @@
             android:icon="@drawable/icon_message"
             android:title="@string/contacts" />
     </group>
-    <group
-        android:id="@+id/order_history"
+
+    <group android:id="@+id/second_group"
         android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_order_history"
             android:icon="@drawable/ic_baseline_history_24"
             android:title="@string/history" />
     </group>
