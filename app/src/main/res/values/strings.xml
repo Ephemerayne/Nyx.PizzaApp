@@ -84,5 +84,8 @@
     <string name="apply_registration">Принять</string>
     <string name="logout">Выйти</string>
     <string name="profile">Профиль</string>
+    <string name="send_code_verification">Подождите, код отправляется</string>
+    <string name="sms_code_verification">Введите код из СМС</string>
+    <string name="next">Далее</string>
 
 </resources>

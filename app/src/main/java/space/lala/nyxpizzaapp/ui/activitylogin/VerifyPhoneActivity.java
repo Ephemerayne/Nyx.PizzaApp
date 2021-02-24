@@ -65,10 +65,10 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
     private void sendVerificationCode(String userPhoneNumber) {
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
-                .setPhoneNumber(userPhoneNumber)       // Phone number to verify
-                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                .setActivity(this)                 // Activity (for callback binding)
-                .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
+                .setPhoneNumber(userPhoneNumber)
+                .setTimeout(60L, TimeUnit.SECONDS)
+                .setActivity(this)
+                .setCallbacks(mCallbacks)
                 .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
