@@ -88,4 +88,5 @@
     <string name="sms_code_verification">Введите код из СМС</string>
     <string name="next">Далее</string>
 
+    <string name="order_datetime">Заказ от %s %s</string>
 </resources>

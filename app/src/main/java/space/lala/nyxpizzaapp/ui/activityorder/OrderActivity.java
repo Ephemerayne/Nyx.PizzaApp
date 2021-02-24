@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,13 +18,19 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 import space.lala.nyxpizzaapp.CartProductListener;
 import space.lala.nyxpizzaapp.CartProductsAdapter;
 import space.lala.nyxpizzaapp.R;
 import space.lala.nyxpizzaapp.model.Product;
+import space.lala.nyxpizzaapp.model.UserOrder;
 import space.lala.nyxpizzaapp.ui.activitydetailproducts.ProductDetailActivity;
+import space.lala.nyxpizzaapp.ui.activitylogin.LoginActivity;
 import space.lala.nyxpizzaapp.utils.PriceFormatter;
 
 
@@ -39,6 +46,8 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
     private CardView cardViewNoSelectedProducts;
     private TextView noSelectedProducts;
     private Button clearCartButton;
+    private FirebaseAuth auth;
+    private List<Product> cartProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +58,8 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        auth = FirebaseAuth.getInstance();
+
         name = findViewById(R.id.edit_name);
         phone = findViewById(R.id.edit_phone);
         details = findViewById(R.id.edit_details);
@@ -58,6 +69,9 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
         noSelectedProducts = findViewById(R.id.text_no_selected_products);
         clearCartButton = findViewById(R.id.clear_cart);
 
+        if (auth.getCurrentUser() != null) {
+            phone.setText(auth.getCurrentUser().getPhoneNumber());
+        }
 
         details.setImeOptions(EditorInfo.IME_ACTION_DONE);
         details.setRawInputType(InputType.TYPE_CLASS_TEXT);
@@ -70,6 +84,7 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
 
         viewModel = ViewModelProviders.of(this).get(OrderActivityViewModel.class);
         viewModel.getSelectedProducts().observe(this, cartProducts -> {
+            this.cartProducts = cartProducts;
             adapter.setSelectedProducts(cartProducts);
             clearCartButton.setOnClickListener(view -> clearCart(cartProducts));
 
@@ -117,20 +132,30 @@ public class OrderActivity extends AppCompatActivity implements CartProductListe
         startActivity(intent);
     }
 
-//    public void onClickDone(View view) {
-//        CharSequence text = "Ваш заказ был отправлен!";
-//        Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator), text, 10000);
-//        snackbar.setAction("Посмотреть",
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        Toast toast = Toast.makeText(OrderActivity.this, "Отменено!",
-//                                Toast.LENGTH_LONG);
-//                        toast.show();
-//                    }
-//                });
-//        snackbar.show();
-//    }
+    public void onClickDone(View view) {
+        if (auth.getCurrentUser() != null) {
+            CharSequence text = "Ваш заказ был отправлен!";
+            Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+            UserOrder userOrder = new UserOrder(
+                    auth.getCurrentUser().getUid(),
+                    LocalDateTime.now(),
+                    cartProducts
+            );
+            viewModel.insertOrder(userOrder);
+        } else {
+            CharSequence text = "Для продолжения зарегистрируйтесь";
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator), text, 10000);
+            snackbar.setAction("Зарегистрироваться",
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(OrderActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+            snackbar.show();
+        }
+    }
 }
 
 
